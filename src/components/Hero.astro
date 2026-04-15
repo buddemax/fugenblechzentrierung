@@ -63,17 +63,20 @@ const t = content[locale];
           <span class="corner-mark corner-mark--tr"></span>
           <span class="corner-mark corner-mark--bl"></span>
           <span class="corner-mark corner-mark--br"></span>
-          <img
-            src="/Rendering_FBZ_No_BG.png"
-            alt={t.hero.imgAlt}
-            width="1200"
-            height="1200"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            class="w-full h-full object-contain select-none"
-            draggable="false"
-          />
+          <picture>
+            <source srcset="/rendering-fbz.webp" type="image/webp" />
+            <img
+              src="/rendering-fbz-1200.png"
+              alt={t.hero.imgAlt}
+              width="1200"
+              height="1200"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full h-full object-contain select-none"
+              draggable="false"
+            />
+          </picture>
         </div>
 
         <!-- Technical annotations -->

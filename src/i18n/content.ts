@@ -92,7 +92,7 @@ type Content = {
 export const content: Record<Locale, Content> = {
   de: {
     meta: {
-      title: 'FBZ Fugenblechzentrierung – Präzise Zentrierung von Fugenblechen in WU-Konstruktionen',
+      title: 'Fugenblechzentrierung FBZ – Präzise Zentrierung für WU-Bau',
       description:
         'Die patentangemeldete FBZ zentriert Fugenbleche millimetergenau in der Arbeitsfuge zwischen Bodenplatte und Wand. Eliminiert die häufigste Schadensursache bei WU-Konstruktionen. Einbau unter einer Minute pro Laufmeter.',
       ogAlt: 'FBZ Fugenblechzentrierung – 3D-Darstellung des Formteils',
@@ -307,7 +307,7 @@ export const content: Record<Locale, Content> = {
   },
   en: {
     meta: {
-      title: 'FBZ Fugenblechzentrierung – Precise waterstop centering for watertight concrete',
+      title: 'Waterstop Centering FBZ – Precision Alignment for Watertight Concrete',
       description:
         'The patent-pending FBZ positions waterstop sheets perfectly centered in the construction joint between base slab and wall. Eliminates the leading cause of failure in watertight concrete structures. Installation under one minute per linear meter.',
       ogAlt: 'FBZ Fugenblechzentrierung – 3D view of the foam centering element',

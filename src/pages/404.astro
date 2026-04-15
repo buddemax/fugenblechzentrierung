@@ -1,0 +1,40 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+---
+
+<Layout
+  locale="de"
+  pageType="legal"
+  path="404/"
+  title="Seite nicht gefunden (404) | FBZ Fugenblechzentrierung"
+  description="Die angeforderte Seite wurde nicht gefunden."
+  noindex={true}
+>
+  <Header locale="de" />
+  <main id="main" class="py-24 md:py-32">
+    <div class="grid-frame">
+      <div class="col-span-12 md:col-span-8 md:col-start-3">
+        <span class="label-blue">Fehler 404</span>
+        <h1 class="mt-6 font-display text-5xl md:text-6xl font-semibold tracking-tight">
+          Diese Seite existiert nicht.
+        </h1>
+        <p class="mt-8 text-ink-soft text-lg max-w-[52ch] leading-relaxed">
+          Die angeforderte Adresse konnte nicht gefunden werden. Möglicherweise wurde die Seite verschoben, umbenannt oder nie veröffentlicht.
+        </p>
+        <div class="mt-12 flex flex-wrap gap-6">
+          <a href="/" class="btn-primary">
+            Zur Startseite
+            <span class="arrow">→</span>
+          </a>
+          <a href="/#contact" class="btn-ghost">
+            Kontakt aufnehmen
+            <span>↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer locale="de" />
+</Layout>

@@ -8,6 +8,9 @@ interface Props {
 const { locale } = Astro.props;
 const t = content[locale].footer;
 const year = new Date().getFullYear();
+const legalHref = locale === 'de' ? '/impressum/' : '/en/legal-notice/';
+const privacyHref = locale === 'de' ? '/datenschutz/' : '/en/privacy/';
+const privacyLabel = locale === 'de' ? 'Datenschutz' : 'Privacy';
 ---
 
 <footer class="py-14 md:py-16 border-t border-ink-line">
@@ -31,6 +34,10 @@ const year = new Date().getFullYear();
 
     <div class="col-span-12 md:col-span-6 mt-8 md:mt-0 md:text-right flex flex-col md:items-end gap-5">
       <p class="label text-[0.6875rem]">{t.patent}</p>
+      <nav class="flex gap-6 text-xs text-ink-soft" aria-label={locale === 'de' ? 'Rechtliches' : 'Legal'}>
+        <a href={legalHref} class="hover:text-blue transition-colors">{t.legal}</a>
+        <a href={privacyHref} class="hover:text-blue transition-colors">{privacyLabel}</a>
+      </nav>
       <p class="text-xs text-ink-mute">© {year} BBA GmbH</p>
     </div>
   </div>

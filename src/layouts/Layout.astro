@@ -5,51 +5,302 @@ import { content } from '~/i18n/content';
 
 interface Props {
   locale: Locale;
+  pageType?: 'home' | 'legal';
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  path?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, pageType = 'home', title, description, noindex = false, path = '' } = Astro.props;
 const t = content[locale];
 const altLocale: Locale = locale === 'de' ? 'en' : 'de';
-const canonical = locale === 'de' ? 'https://fugenblechzentrierung.de/' : 'https://fugenblechzentrierung.de/en/';
-const altHref = altLocale === 'de' ? 'https://fugenblechzentrierung.de/' : 'https://fugenblechzentrierung.de/en/';
+
+const baseDe = 'https://fugenblechzentrierung.de';
+const baseEn = 'https://fugenblechzentrierung.de/en';
+const canonical = (locale === 'de' ? baseDe : baseEn) + (path ? `/${path}` : '/');
+const altHref = (altLocale === 'de' ? baseDe : baseEn) + (path ? `/${path}` : '/');
+
+const pageTitle = title ?? t.meta.title;
+const pageDescription = description ?? t.meta.description;
+const ogImage = 'https://fugenblechzentrierung.de/og-image.png';
+
+const orgNode = {
+  '@type': 'Organization',
+  '@id': 'https://fugenblechzentrierung.de/#org',
+  name: 'BBA GmbH',
+  legalName: 'BBA GmbH',
+  url: 'https://fugenblechzentrierung.de/',
+  email: 'info@bba-badsaarow.de',
+  telephone: '+49 174 4935860',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Silberberger Chaussee 14',
+    postalCode: '15526',
+    addressLocality: 'Bad Saarow',
+    addressRegion: 'BB',
+    addressCountry: 'DE',
+  },
+  founder: {
+    '@type': 'Person',
+    name: 'Dr. Ing. Jörn Budde',
+    jobTitle: locale === 'de' ? 'Öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz' : 'Publicly appointed and sworn expert for building waterproofing and structural protection',
+  },
+  vatID: 'DE188194413',
+  taxID: 'HRB 17338',
+  areaServed: [
+    { '@type': 'Country', name: 'Germany' },
+    { '@type': 'Country', name: 'Austria' },
+    { '@type': 'Country', name: 'Switzerland' },
+  ],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: '+49 174 4935860',
+      email: 'info@bba-badsaarow.de',
+      availableLanguage: ['de', 'en'],
+      areaServed: ['DE', 'AT', 'CH'],
+    },
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: '+49 33631 58376',
+      email: 'info@bba-badsaarow.de',
+      availableLanguage: ['de'],
+    },
+  ],
+};
+
+const productNode = {
+  '@type': 'Product',
+  '@id': 'https://fugenblechzentrierung.de/#product',
+  name: 'FBZ Fugenblechzentrierung',
+  alternateName: locale === 'de' ? 'Fugenblech-Zentrierhilfe' : 'Waterstop Centering Element',
+  description: t.meta.description,
+  image: ['https://fugenblechzentrierung.de/rendering-fbz-1200.png'],
+  sku: 'FBZ-001',
+  mpn: 'FBZ-001',
+  brand: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  manufacturer: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  category: 'Construction / Waterproofing / Concrete joint sealing',
+  material: locale === 'de' ? 'Schaumstoff-Formteil' : 'Moulded foam element',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: locale === 'de' ? 'Patent angemeldet' : 'Patent pending', value: 'DE 10 2025 121 129.9' },
+    { '@type': 'PropertyValue', name: locale === 'de' ? 'Einbauzeit' : 'Install time', value: locale === 'de' ? '< 1 Minute pro Laufmeter' : '< 1 minute per linear meter' },
+    { '@type': 'PropertyValue', name: locale === 'de' ? 'Werkzeugbedarf' : 'Tooling required', value: locale === 'de' ? 'Keiner' : 'None' },
+    { '@type': 'PropertyValue', name: locale === 'de' ? 'Einsatzbereich' : 'Application', value: locale === 'de' ? 'WU-Konstruktionen, Arbeitsfuge Bodenplatte/Wand' : 'Watertight concrete, base-slab-to-wall joints' },
+  ],
+  offers: {
+    '@type': 'Offer',
+    url: canonical + '#contact',
+    priceCurrency: 'EUR',
+    price: '0',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      priceCurrency: 'EUR',
+      description: locale === 'de' ? 'Preis auf Anfrage' : 'Price on request',
+    },
+    availability: 'https://schema.org/InStock',
+    itemCondition: 'https://schema.org/NewCondition',
+    businessFunction: 'https://schema.org/Sell',
+    areaServed: ['DE', 'AT', 'CH'],
+    seller: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  },
+};
+
+const websiteNode = {
+  '@type': 'WebSite',
+  '@id': 'https://fugenblechzentrierung.de/#website',
+  url: 'https://fugenblechzentrierung.de/',
+  name: 'FBZ Fugenblechzentrierung',
+  publisher: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  inLanguage: ['de-DE', 'en-US'],
+};
+
+const faqDe = {
+  '@type': 'FAQPage',
+  '@id': 'https://fugenblechzentrierung.de/#faq',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Was ist die FBZ Fugenblechzentrierung?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die FBZ ist ein patentangemeldetes Formteil aus Schaumstoff, das Fugenbleche exakt mittig in der Arbeitsfuge einer WU-Konstruktion positioniert und während des Betoniervorgangs sicher in Position hält. Sie eliminiert die häufigste Schadensursache am Boden-Wand-Anschluss.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Warum versagen so viele WU-Konstruktionen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Rund 50 Prozent aller WU-Bauwerke erreichen nicht die zugesicherte Wasserdichtheit und etwa 40 Prozent aller Schäden entstehen am Boden-Wand-Anschluss durch fehlerhaft eingebaute Fugenbleche. Ursachen sind Verschiebung beim Betonieren, Abstandsfehler zur Bewehrung, mangelhafte Zentrierung und falsche Einbindetiefe.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie viel Zeit spart die FBZ beim Einbau?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die Einbauzeit liegt unter einer Minute pro Laufmeter. Es werden keine Spezialwerkzeuge benötigt und jeder Bauarbeiter kann die FBZ ohne Einweisung einsetzen.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Für welche Bauvorhaben eignet sich die FBZ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die FBZ ist für alle WU-Konstruktionen im Bodenplatten-Wandbereich geeignet: Tiefgaragenböden und -wände, Keller und Untergeschosse mit Grundwasserbeanspruchung, Industriebauten mit wasserdichten Betonkonstruktionen sowie Systembau-Projekte mit engen Taktzeiten.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kostet eine Injektionssanierung bei versagtem Fugenblech?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Eine nachträgliche Injektionssanierung kostet regelmäßig zwischen 10.000 und 100.000 Euro pro Schadensfall – zuzüglich Nutzungsausfall, Gutachten und möglicher Rechtsstreitigkeiten. Die FBZ kostet pro Laufmeter einen Bruchteil davon.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wer hat die FBZ entwickelt?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Die FBZ wurde von Dr. Ing. Jörn Budde (BBA GmbH, Bad Saarow) entwickelt – öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz mit über 30 Jahren Erfahrung im Schadensgutachten. Das Produkt ist zum Patent angemeldet (DE 10 2025 121 129.9).',
+      },
+    },
+  ],
+};
+
+const faqEn = {
+  '@type': 'FAQPage',
+  '@id': 'https://fugenblechzentrierung.de/#faq',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the FBZ waterstop centering element?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The FBZ is a patent-pending moulded foam element that positions waterstop sheets dead-center in the construction joint of watertight concrete structures and holds them securely throughout the pour. It eliminates the leading cause of failure at the base-slab-to-wall joint.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do so many watertight concrete structures fail?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Roughly 50 percent of watertight concrete structures fail to achieve the specified water tightness and about 40 percent of damage cases originate at the base-to-wall joint due to faulty waterstops. Root causes are displacement during the pour, insufficient rebar clearance, poor centering, and wrong embedment depth.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much time does the FBZ save during installation?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Installation takes under one minute per linear meter. No special tools are required and any worker can install the FBZ without training.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'For which projects is the FBZ suitable?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The FBZ is suitable for any watertight concrete structure at the base-slab-to-wall joint: underground car park slabs and walls, basements and cellars exposed to groundwater, industrial buildings with watertight concrete, and system-build projects with tight schedules.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does a retroactive injection remediation cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Retroactive injection remediation regularly runs between €10,000 and €100,000 per case — plus loss of use, expert reports, and potential legal disputes. The FBZ costs a fraction of that per linear meter.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who developed the FBZ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The FBZ was developed by Dr. Ing. Jörn Budde (BBA GmbH, Bad Saarow), publicly appointed and sworn expert for building waterproofing and structural protection with over 30 years of experience in damage assessment. The product is patent-pending (DE 10 2025 121 129.9).',
+      },
+    },
+  ],
+};
+
+const howToDe = {
+  '@type': 'HowTo',
+  '@id': 'https://fugenblechzentrierung.de/#howto',
+  name: 'Fugenblech mit der FBZ einbauen',
+  description: 'In drei Schritten zum exakt zentrierten Fugenblech in der Arbeitsfuge einer WU-Konstruktion.',
+  totalTime: 'PT1M',
+  tool: [{ '@type': 'HowToTool', name: 'Keines erforderlich' }],
+  supply: [
+    { '@type': 'HowToSupply', name: 'FBZ Fugenblechzentrierung' },
+    { '@type': 'HowToSupply', name: 'Fugenblech' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Positionieren',
+      text: 'FBZ auf der Arbeitsfuge zwischen Bodenplatte und Wand aufsetzen. Keine Vorarbeit, keine Messung erforderlich.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Einstecken',
+      text: 'Fugenblech in den präzisen Schlitz der FBZ einführen. Das Blech zentriert sich automatisch millimetergenau mittig.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Betonieren',
+      text: 'Beton einbringen. Die FBZ hält das Fugenblech während des gesamten Betoniervorgangs sicher in Position.',
+    },
+  ],
+};
+
+const howToEn = {
+  '@type': 'HowTo',
+  '@id': 'https://fugenblechzentrierung.de/#howto',
+  name: 'Install a waterstop with the FBZ',
+  description: 'Three steps to a perfectly centered waterstop in the construction joint of a watertight concrete structure.',
+  totalTime: 'PT1M',
+  tool: [{ '@type': 'HowToTool', name: 'None required' }],
+  supply: [
+    { '@type': 'HowToSupply', name: 'FBZ waterstop centering element' },
+    { '@type': 'HowToSupply', name: 'Waterstop sheet' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Place',
+      text: 'Position the FBZ on the construction joint between base slab and wall. No prep work, no measurement needed.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Insert',
+      text: 'Slide the waterstop sheet into the precision slit of the FBZ. The sheet self-centers automatically.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Pour',
+      text: 'Place the concrete. The FBZ holds the waterstop securely throughout the entire pour.',
+    },
+  ],
+};
+
+const graph = pageType === 'home'
+  ? [orgNode, websiteNode, productNode, locale === 'de' ? faqDe : faqEn, locale === 'de' ? howToDe : howToEn]
+  : [orgNode, websiteNode];
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      '@id': 'https://fugenblechzentrierung.de/#org',
-      name: 'BBA GmbH',
-      url: 'https://fugenblechzentrierung.de/',
-      email: 'info@bba-badsaarow.de',
-      telephone: '+49 33631 5663',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Silberberger Chaussee 14',
-        postalCode: '15526',
-        addressLocality: 'Bad Saarow',
-        addressCountry: 'DE',
-      },
-      founder: {
-        '@type': 'Person',
-        name: 'Dr. Ing. Jörn Budde',
-      },
-    },
-    {
-      '@type': 'Product',
-      '@id': 'https://fugenblechzentrierung.de/#product',
-      name: 'FBZ Fugenblechzentrierung',
-      description: t.meta.description,
-      image: 'https://fugenblechzentrierung.de/rendering-fbz.png',
-      brand: { '@id': 'https://fugenblechzentrierung.de/#org' },
-      manufacturer: { '@id': 'https://fugenblechzentrierung.de/#org' },
-      category: 'Construction / Waterproofing',
-      additionalProperty: [
-        { '@type': 'PropertyValue', name: 'Patent angemeldet', value: 'DE 10 2025 121 129.9' },
-        { '@type': 'PropertyValue', name: 'Application', value: 'Watertight concrete construction joints' },
-      ],
-    },
-  ],
+  '@graph': graph,
 };
 ---
 
@@ -59,22 +310,37 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{t.meta.title}</title>
-    <meta name="description" content={t.meta.description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="alternate" hreflang={locale} href={canonical} />
     <link rel="alternate" hreflang={altLocale} href={altHref} />
     <link rel="alternate" hreflang="x-default" href="https://fugenblechzentrierung.de/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={t.meta.title} />
-    <meta property="og:description" content={t.meta.description} />
-    <meta property="og:image" content="https://fugenblechzentrierung.de/rendering-fbz.png" />
+    <meta property="og:site_name" content="FBZ Fugenblechzentrierung" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={t.meta.ogAlt} />
     <meta property="og:locale" content={locale === 'de' ? 'de_DE' : 'en_US'} />
+    <meta property="og:locale:alternate" content={locale === 'de' ? 'en_US' : 'de_DE'} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="theme-color" content="#f7f8f9" />
-    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="/logo-fbz.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    {pageType === 'home' && (
+      <link rel="preload" as="image" href="/rendering-fbz.webp" type="image/webp" fetchpriority="high" />
+    )}
+    <link rel="preload" as="font" href="/fonts/satoshi-400.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href="/fonts/clash-display-600.woff2" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

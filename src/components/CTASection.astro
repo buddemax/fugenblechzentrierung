@@ -1,0 +1,69 @@
+---
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale].cta;
+const email = 'info@bba-badsaarow.de';
+const phone = '+49 33631 5663';
+const phoneHref = 'tel:+493363156663';
+const subject = encodeURIComponent(t.subject);
+const body = encodeURIComponent(
+  locale === 'de'
+    ? 'Guten Tag,\n\nwir interessieren uns für die FBZ Fugenblechzentrierung.\n\nProjekt: \nBenötigte Laufmeter: \nGewünschter Liefertermin: \n\nBitte senden Sie uns ein Angebot.\n\nMit freundlichen Grüßen'
+    : 'Hello,\n\nwe are interested in the FBZ Fugenblechzentrierung.\n\nProject: \nRequired linear meters: \nDelivery target: \n\nPlease send us a quote.\n\nKind regards',
+);
+const mailHref = `mailto:${email}?subject=${subject}&body=${body}`;
+---
+
+<section id="contact" class="py-[clamp(5rem,10vw,9rem)] border-t border-ink-line bg-[oklch(96%_0.006_230)]">
+  <div class="grid-frame">
+    <div class="col-span-12 lg:col-span-7">
+      <span class="label-blue">{t.eyebrow}</span>
+      <h2 class="mt-6 text-display-xl font-display font-semibold leading-[0.92] tracking-[-0.035em] text-balance">
+        {t.headline}
+      </h2>
+      <p class="mt-10 text-ink-soft text-lg md:text-xl leading-relaxed max-w-[52ch]">
+        {t.body}
+      </p>
+
+      <a
+        href={mailHref}
+        class="mt-12 inline-flex items-center gap-4 font-display text-[1.5rem] md:text-[2rem] font-medium text-ink border-b border-ink pb-2 hover:text-blue hover:border-blue transition-colors duration-300"
+      >
+        {email}
+        <span>↗</span>
+      </a>
+    </div>
+
+    <div class="col-span-12 lg:col-span-4 lg:col-start-9 mt-16 lg:mt-0 lg:pt-2">
+      <div class="border-t border-ink pt-6">
+        <dl class="space-y-6">
+          <div>
+            <dt class="label text-[0.6875rem]">{t.mailLabel}</dt>
+            <dd class="mt-1.5">
+              <a href={`mailto:${email}`} class="font-display text-base font-medium hover:text-blue transition-colors">{email}</a>
+            </dd>
+          </div>
+          <div>
+            <dt class="label text-[0.6875rem]">{t.phoneLabel}</dt>
+            <dd class="mt-1.5">
+              <a href={phoneHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phone}</a>
+            </dd>
+          </div>
+          <div>
+            <dt class="label text-[0.6875rem]">{locale === 'de' ? 'Adresse' : 'Address'}</dt>
+            <dd class="mt-1.5 font-display text-base font-medium leading-snug">
+              BBA GmbH<br />
+              Silberberger Chaussee 14<br />
+              15526 Bad Saarow
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+---
+import '~/styles/global.css';
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = content[locale];
+const altLocale: Locale = locale === 'de' ? 'en' : 'de';
+const canonical = locale === 'de' ? 'https://fugenblechzentrierung.de/' : 'https://fugenblechzentrierung.de/en/';
+const altHref = altLocale === 'de' ? 'https://fugenblechzentrierung.de/' : 'https://fugenblechzentrierung.de/en/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://fugenblechzentrierung.de/#org',
+      name: 'BBA GmbH',
+      url: 'https://fugenblechzentrierung.de/',
+      email: 'info@bba-badsaarow.de',
+      telephone: '+49 33631 5663',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Silberberger Chaussee 14',
+        postalCode: '15526',
+        addressLocality: 'Bad Saarow',
+        addressCountry: 'DE',
+      },
+      founder: {
+        '@type': 'Person',
+        name: 'Dr. Ing. Jörn Budde',
+      },
+    },
+    {
+      '@type': 'Product',
+      '@id': 'https://fugenblechzentrierung.de/#product',
+      name: 'FBZ Fugenblechzentrierung',
+      description: t.meta.description,
+      image: 'https://fugenblechzentrierung.de/rendering-fbz.png',
+      brand: { '@id': 'https://fugenblechzentrierung.de/#org' },
+      manufacturer: { '@id': 'https://fugenblechzentrierung.de/#org' },
+      category: 'Construction / Waterproofing',
+      additionalProperty: [
+        { '@type': 'PropertyValue', name: 'Patent angemeldet', value: 'DE 10 2025 121 129.9' },
+        { '@type': 'PropertyValue', name: 'Application', value: 'Watertight concrete construction joints' },
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={locale} href={canonical} />
+    <link rel="alternate" hreflang={altLocale} href={altHref} />
+    <link rel="alternate" hreflang="x-default" href="https://fugenblechzentrierung.de/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:image" content="https://fugenblechzentrierung.de/rendering-fbz.png" />
+    <meta property="og:image:alt" content={t.meta.ogAlt} />
+    <meta property="og:locale" content={locale === 'de' ? 'de_DE' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f7f8f9" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-ink focus:text-paper focus:px-4 focus:py-2">
+      {locale === 'de' ? 'Zum Inhalt springen' : 'Skip to content'}
+    </a>
+    <slot />
+  </body>
+</html>

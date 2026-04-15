@@ -1,0 +1,54 @@
+---
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale].solution;
+---
+
+<section id="solution" class="py-[clamp(5rem,10vw,9rem)] border-t border-ink-line bg-[oklch(96%_0.006_230)]">
+  <div class="grid-frame">
+    <div class="col-span-12 md:col-span-10 lg:col-span-8">
+      <span class="label-blue">{t.eyebrow}</span>
+      <h2 class="mt-6 text-display-lg font-display font-semibold leading-[0.98] text-balance">
+        {t.headline}
+      </h2>
+      <p class="mt-8 text-ink-soft text-lg leading-relaxed max-w-[56ch]">
+        {t.lead}
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="col-span-12 mt-20 md:mt-28">
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-line">
+        {t.steps.map((step) => (
+          <li class="bg-[oklch(96%_0.006_230)] p-8 md:p-10 relative group">
+            <div class="flex items-baseline gap-5 mb-8">
+              <span class="font-mono text-[0.75rem] tracking-wider text-blue">{step.num}</span>
+              <span class="h-px flex-1 bg-ink-line"></span>
+            </div>
+            <h3 class="font-display text-3xl md:text-4xl font-semibold leading-none text-ink">
+              {step.title}
+            </h3>
+            <p class="mt-5 text-ink-soft text-[0.9375rem] leading-relaxed max-w-[32ch]">
+              {step.body}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- Timing callout -->
+    <div class="col-span-12 mt-16 md:mt-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6 pt-8 border-t border-ink">
+      <div class="flex items-baseline gap-4">
+        <span class="label-blue">{t.timing.label}</span>
+      </div>
+      <p class="font-display text-3xl md:text-5xl lg:text-6xl font-semibold leading-none tracking-tight text-balance max-w-[18ch]">
+        {t.timing.value}
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,191 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-paper: oklch(98.4% 0.004 230);
+    --color-ink: oklch(18% 0.015 240);
+    --color-ink-soft: oklch(32% 0.012 240);
+    --color-ink-mute: oklch(52% 0.010 235);
+    --color-ink-line: oklch(88% 0.006 230);
+    --color-blue: #1182C2;
+    --color-green: #328E51;
+    --rule: 1px solid var(--color-ink-line);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "ss01", "cv11";
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.55;
+    font-feature-settings: "ss01", "cv11", "kern";
+  }
+
+  ::selection {
+    background: var(--color-blue);
+    color: var(--color-paper);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Clash Display', system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .rule {
+    height: 1px;
+    background: var(--color-ink-line);
+    width: 100%;
+  }
+
+  .label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
+  }
+
+  .label-blue {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+  }
+
+  .grid-frame {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+
+  .dim-line {
+    position: relative;
+  }
+  .dim-line::before,
+  .dim-line::after {
+    content: '';
+    position: absolute;
+    background: var(--color-ink-line);
+  }
+
+  .corner-mark {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--color-ink-soft);
+  }
+  .corner-mark--tl { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
+  .corner-mark--tr { top: 0; right: 0; border-top: 1px solid; border-right: 1px solid; }
+  .corner-mark--bl { bottom: 0; left: 0; border-bottom: 1px solid; border-left: 1px solid; }
+  .corner-mark--br { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem 1rem 1.75rem;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    letter-spacing: -0.005em;
+    transition: background 280ms cubic-bezier(0.16, 1, 0.3, 1), transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover {
+    background: var(--color-blue);
+  }
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+  .btn-primary .arrow {
+    display: inline-block;
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem 0;
+    color: var(--color-ink);
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--color-ink-line);
+    transition: border-color 280ms cubic-bezier(0.16, 1, 0.3, 1), color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-ghost:hover {
+    color: var(--color-blue);
+    border-color: var(--color-blue);
+  }
+
+  .num-mega {
+    font-family: 'Clash Display', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(5rem, 12vw, 11rem);
+    line-height: 0.82;
+    letter-spacing: -0.055em;
+    color: var(--color-ink);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .measure {
+    max-width: 38ch;
+  }
+  .prose-measure {
+    max-width: 62ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,71 @@
+---
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale].cost;
+---
+
+<section class="py-[clamp(5rem,10vw,9rem)] border-t border-ink-line bg-ink text-paper">
+  <div class="grid-frame">
+    <div class="col-span-12 lg:col-span-7">
+      <span class="label" style="color: oklch(74% 0.007 230);">{t.eyebrow}</span>
+      <h2 class="mt-6 text-display-lg font-display font-semibold leading-[0.98] text-balance text-paper">
+        {t.headline}
+      </h2>
+      <p class="mt-8 text-[1.0625rem] md:text-lg leading-relaxed max-w-[58ch]" style="color: oklch(82% 0.007 230);">
+        {t.lead}
+      </p>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="col-span-12 mt-16 md:mt-24">
+      <div class="grid grid-cols-12 gap-0 border-t" style="border-color: oklch(30% 0.012 240);">
+        <!-- Header row -->
+        <div class="col-span-4"></div>
+        <div class="col-span-4 p-5 md:p-6 border-l" style="border-color: oklch(30% 0.012 240);">
+          <span class="label" style="color: oklch(72% 0.007 230);">{t.withoutLabel}</span>
+        </div>
+        <div class="col-span-4 p-5 md:p-6 border-l" style="border-color: oklch(30% 0.012 240); background: oklch(28% 0.08 238);">
+          <span class="label" style="color: oklch(78% 0.08 238);">{t.withLabel}</span>
+        </div>
+
+        {t.rows.map((row) => (
+          <>
+            <div class="col-span-4 p-5 md:p-6 border-t" style="border-color: oklch(30% 0.012 240);">
+              <span class="label text-[0.6875rem]" style="color: oklch(62% 0.010 235);">{row.label}</span>
+            </div>
+            <div class="col-span-4 p-5 md:p-6 border-t border-l text-[0.9375rem] md:text-base leading-snug" style="border-color: oklch(30% 0.012 240); color: oklch(82% 0.007 230);">
+              {row.without}
+            </div>
+            <div class="col-span-4 p-5 md:p-6 border-t border-l text-[0.9375rem] md:text-base font-medium leading-snug" style="border-color: oklch(30% 0.012 240); color: oklch(94% 0.006 230); background: oklch(22% 0.05 238);">
+              {row.with}
+            </div>
+          </>
+        ))}
+      </div>
+    </div>
+
+    <!-- Damage cascade -->
+    <div class="col-span-12 mt-20 md:mt-28 pt-12 border-t" style="border-color: oklch(30% 0.012 240);">
+      <h3 class="font-display text-2xl md:text-[1.75rem] font-semibold leading-tight max-w-[48ch]" style="color: oklch(94% 0.006 230);">
+        {t.cascade.title}
+      </h3>
+      <ol class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+        {t.cascade.items.map((item, i) => (
+          <li class="flex gap-4 items-start">
+            <span class="font-mono text-[0.75rem] tracking-wider shrink-0 pt-1" style="color: oklch(65% 0.13 28);">
+              0{i + 1}
+            </span>
+            <span class="text-[0.9375rem] md:text-base leading-relaxed" style="color: oklch(84% 0.007 230);">
+              {item}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

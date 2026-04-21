@@ -4,16 +4,18 @@ import { content } from '~/i18n/content';
 
 interface Props {
   locale: Locale;
+  minimal?: boolean;
 }
-const { locale } = Astro.props;
+const { locale, minimal = false } = Astro.props;
 const t = content[locale];
 const otherLocale: Locale = locale === 'de' ? 'en' : 'de';
+const homeHref = locale === 'de' ? '/' : '/en/';
 const otherHref = otherLocale === 'de' ? '/' : '/en/';
 ---
 
 <header class="sticky top-0 z-40 backdrop-blur-md bg-paper/95 border-b border-ink-line">
   <div class="grid-frame items-center py-4 md:py-5" style="grid-template-columns: auto 1fr auto;">
-    <a href={locale === 'de' ? '/' : '/en/'} class="flex items-center gap-3 group" aria-label="FBZ Fugenblechzentrierung">
+    <a href={homeHref} class="flex items-center gap-3 group" aria-label="FBZ Fugenblechzentrierung">
       <img
         src="/logo-fbz.png"
         alt=""
@@ -28,12 +30,15 @@ const otherHref = otherLocale === 'de' ? '/' : '/en/';
       <span class="hidden sm:inline text-ink-mute text-sm">Fugenblechzentrierung</span>
     </a>
 
-    <nav class="hidden md:flex justify-center gap-8 text-sm text-ink-soft">
-      <a href="#problem" class="hover:text-blue transition-colors">{t.nav.problem}</a>
-      <a href="#solution" class="hover:text-blue transition-colors">{t.nav.solution}</a>
-      <a href="#benefits" class="hover:text-blue transition-colors">{t.nav.benefits}</a>
-      <a href="#contact" class="hover:text-blue transition-colors">{t.nav.contact}</a>
-    </nav>
+    {!minimal && (
+      <nav class="hidden md:flex justify-center gap-8 text-sm text-ink-soft">
+        <a href="#problem" class="hover:text-blue transition-colors">{t.nav.problem}</a>
+        <a href="#solution" class="hover:text-blue transition-colors">{t.nav.solution}</a>
+        <a href="#benefits" class="hover:text-blue transition-colors">{t.nav.benefits}</a>
+        <a href="#contact" class="hover:text-blue transition-colors">{t.nav.contact}</a>
+      </nav>
+    )}
+    {minimal && <div></div>}
 
     <div class="flex items-center gap-5">
       <a href={otherHref} class="label hover:text-blue transition-colors" aria-label={`Switch to ${otherLocale.toUpperCase()}`}>
@@ -41,10 +46,12 @@ const otherHref = otherLocale === 'de' ? '/' : '/en/';
         <span class="mx-1.5 text-ink-line">/</span>
         <span>{otherLocale.toUpperCase()}</span>
       </a>
-      <a href="#contact" class="hidden sm:inline-flex btn-primary !py-2.5 !px-4 text-[0.8125rem]">
-        {t.hero.ctaPrimary}
-        <span class="arrow">→</span>
-      </a>
+      {!minimal && (
+        <a href="#contact" class="hidden sm:inline-flex btn-primary !py-2.5 !px-4 text-[0.8125rem]">
+          {t.hero.ctaPrimary}
+          <span class="arrow">→</span>
+        </a>
+      )}
     </div>
   </div>
 </header>

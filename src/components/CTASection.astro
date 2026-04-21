@@ -8,8 +8,16 @@ interface Props {
 const { locale } = Astro.props;
 const t = content[locale].cta;
 const email = 'info@bba-badsaarow.de';
-const phone = '+49 174 4935860';
-const phoneHref = 'tel:+491744935860';
+const phoneOffice = '+49 33631 58376';
+const phoneOfficeHref = 'tel:+493363158376';
+const phoneOfficeAlt = '+49 33631 58375';
+const phoneOfficeAltHref = 'tel:+493363158375';
+const phoneMobile = '+49 174 4935860';
+const phoneMobileHref = 'tel:+491744935860';
+const contacts = [
+  { name: 'Dr. Ing. Jörn Budde', role: locale === 'de' ? 'Geschäftsführer · Entwickler' : 'Managing Director · Developer' },
+  { name: 'Max Budde', role: locale === 'de' ? 'Ansprechpartner' : 'Contact' },
+];
 const subject = encodeURIComponent(t.subject);
 const body = encodeURIComponent(
   locale === 'de'
@@ -43,6 +51,17 @@ const mailHref = `mailto:${email}?subject=${subject}&body=${body}`;
       <div class="border-t border-ink pt-6">
         <dl class="space-y-6">
           <div>
+            <dt class="label text-[0.6875rem]">{locale === 'de' ? 'Ansprechpartner' : 'Contacts'}</dt>
+            <dd class="mt-1.5 space-y-3">
+              {contacts.map((c) => (
+                <div>
+                  <p class="font-display text-base font-medium leading-snug">{c.name}</p>
+                  <p class="text-ink-mute text-[0.8125rem] leading-snug">{c.role}</p>
+                </div>
+              ))}
+            </dd>
+          </div>
+          <div>
             <dt class="label text-[0.6875rem]">{t.mailLabel}</dt>
             <dd class="mt-1.5">
               <a href={`mailto:${email}`} class="font-display text-base font-medium hover:text-blue transition-colors">{email}</a>
@@ -50,8 +69,19 @@ const mailHref = `mailto:${email}?subject=${subject}&body=${body}`;
           </div>
           <div>
             <dt class="label text-[0.6875rem]">{t.phoneLabel}</dt>
-            <dd class="mt-1.5">
-              <a href={phoneHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phone}</a>
+            <dd class="mt-1.5 space-y-2">
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro' : 'Office'}</span>
+                <a href={phoneOfficeHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOffice}</a>
+              </div>
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro 2' : 'Office 2'}</span>
+                <a href={phoneOfficeAltHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOfficeAlt}</a>
+              </div>
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Mobil' : 'Mobile'}</span>
+                <a href={phoneMobileHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneMobile}</a>
+              </div>
             </dd>
           </div>
           <div>

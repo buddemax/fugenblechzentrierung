@@ -213,6 +213,14 @@
     color: var(--color-ink);
     font-variant-numeric: lining-nums tabular-nums;
   }
+
+  .num-mega .num-dash {
+    display: inline-block;
+    vertical-align: 0.22em;
+    margin-inline: 0.04em;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
 }
 
 @layer utilities {

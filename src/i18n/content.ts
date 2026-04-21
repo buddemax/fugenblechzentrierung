@@ -81,7 +81,6 @@ type Content = {
   };
   footer: {
     company: string;
-    owner: string;
     address: string;
     legal: string;
     patent: string;
@@ -116,8 +115,8 @@ export const content: Record<Locale, Content> = {
       specItems: [
         { k: 'Material', v: 'Formteil aus Schaumstoff' },
         { k: 'Einbauzeit', v: '< 1 Minute / lfm' },
-        { k: 'Werkzeug', v: 'Keines erforderlich' },
-        { k: 'Einsatzbereich', v: 'WU-Konstruktionen' },
+        { k: 'Spezialwerkzeug', v: 'Keines erforderlich' },
+        { k: 'Einsatzbereich', v: 'WU-Konstruktionen im Boden-Wand-Bereich' },
       ],
       imgAlt: 'FBZ Fugenblechzentrierung – präzises Schaumstoff-Formteil mit zentralem Schlitz zur Aufnahme des Fugenblechs',
     },
@@ -125,7 +124,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '01 — Das Problem',
       headline: 'Jede zweite WU-Konstruktion hält nicht dicht.',
       lead:
-        'WU-Konstruktionen scheitern in der Praxis mit erschreckender Häufigkeit – fast immer an derselben Stelle: dem Fugenblech am Boden-Wand-Anschluss.',
+        'WU-Konstruktionen scheitern in der Praxis mit erschreckender Häufigkeit, fast immer an derselben Stelle: dem Fugenblech am Boden-Wand-Anschluss.',
       stats: [
         {
           value: '50',
@@ -142,19 +141,19 @@ export const content: Record<Locale, Content> = {
         {
           value: '10–100',
           unit: 'T€',
-          label: 'kostet die Injektionssanierung pro Schadensfall – regelmäßig.',
+          label: 'kostet die Instandsetzung pro Schadensfall – regelmäßig.',
           source: 'Branchendurchschnitt',
         },
       ],
       errors: {
-        title: 'Vier systematische Fehlerquellen beim Einbau',
+        title: 'Fünf systematische Fehlerquellen beim Einbau',
         intro:
           'Diese Fehler entstehen nicht durch Unwissenheit, sondern durch Zeitdruck, Improvisation und das Fehlen einer verlässlichen Zentrierhilfe.',
         items: [
           {
             num: '01',
             title: 'Verschiebung beim Betonieren',
-            body: 'Unzureichende Fixierung – das Fugenblech verrutscht beim Betoneinbringen.',
+            body: 'Unzureichende Fixierung – das Fugenblech verrutscht beim Betonieren.',
           },
           {
             num: '02',
@@ -171,12 +170,17 @@ export const content: Record<Locale, Content> = {
             title: 'Falsche Einbindetiefe',
             body: 'Zu wenig oder zu viel Einbindung in Wand oder Platte – ohne Kontrollinstrument.',
           },
+          {
+            num: '05',
+            title: 'Beschädigung der Beschichtung',
+            body: 'Die Beschichtung des Fugenblechs wird während der Betonage beschädigt – Dichtigkeit kompromittiert.',
+          },
         ],
       },
     },
     solution: {
       eyebrow: '02 — Die Lösung',
-      headline: 'Ein Formteil. Drei Schritte. Kein Werkzeug.',
+      headline: 'Ein Formteil. Drei Schritte. Kein Spezialwerkzeug.',
       lead:
         'Die FBZ wird auf die Arbeitsfuge aufgesetzt. Das Fugenblech gleitet in einen präzisen Schlitz und zentriert sich dabei automatisch. Der Beton umschließt das System und fixiert alles dauerhaft in der richtigen Position.',
       steps: [
@@ -216,11 +220,11 @@ export const content: Record<Locale, Content> = {
         },
         {
           title: 'Kein Spezialwerkzeug',
-          body: 'Einfaches Handling – jeder Bauarbeiter kann die FBZ ohne Einweisung einsetzen.',
+          body: 'Einfaches Handling – jeder Bauarbeiter kann die FBZ nach einer kurzen Einweisung einsetzen.',
         },
         {
           title: 'Wirtschaftlich',
-          body: 'Amortisierung bereits vor dem ersten vermiedenen Schadensfall – allein durch Zeitersparnis.',
+          body: 'Amortisation bereits vor dem ersten vermiedenen Schadensfall – allein durch Zeitersparnis.',
         },
       ],
     },
@@ -228,13 +232,13 @@ export const content: Record<Locale, Content> = {
       eyebrow: '04 — Prävention vs. Sanierung',
       headline: 'Ein Bruchteil der Kosten. Ohne den Schaden.',
       lead:
-        'Eine nachträgliche Injektionssanierung kostet pro Schadensfall regelmäßig einen fünf- bis sechsstelligen Betrag – zuzüglich Nutzungsausfall, Gutachten und Rechtsstreit. Die FBZ kostet einen Bruchteil davon pro Laufmeter.',
+        'Eine nachträgliche Instandsetzung kostet pro Schadensfall regelmäßig einen fünf- bis sechsstelligen Betrag – zuzüglich Nutzungsausfall, Gutachten und Rechtsstreit. Die FBZ kostet einen Bruchteil davon pro Laufmeter.',
       withoutLabel: 'Ohne FBZ',
       withLabel: 'Mit FBZ',
       rows: [
         {
           label: 'Maßnahme',
-          without: 'Nachträgliche Injektionssanierung',
+          without: 'Nachträgliche Instandsetzung',
           with: 'Prävention durch exakte Zentrierung',
         },
         {
@@ -276,7 +280,7 @@ export const content: Record<Locale, Content> = {
     },
     credibility: {
       eyebrow: '06 — Hersteller',
-      headline: 'Entwickelt aus 30 Jahren Erfahrung im Schadensgutachten.',
+      headline: 'Entwickelt aus 30 Jahren Erfahrung.',
       body:
         'Die FBZ wurde von Dr. Ing. Jörn Budde entwickelt – öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus der Kenntnis tausender Schadensfälle am Boden-Wand-Anschluss entstand das erste System, das die eigentliche Ursache systematisch löst: die Zentrierung.',
       facts: [
@@ -298,7 +302,6 @@ export const content: Record<Locale, Content> = {
     },
     footer: {
       company: 'BBA GmbH',
-      owner: 'Dr. Ing. Jörn Budde — Gebäudeabdichtung und Bautenschutz',
       address: 'Silberberger Chaussee 14, 15526 Bad Saarow',
       legal: 'Impressum',
       patent: 'Patent angemeldet: DE 10 2025 121 129.9',
@@ -331,8 +334,8 @@ export const content: Record<Locale, Content> = {
       specItems: [
         { k: 'Material', v: 'Moulded foam element' },
         { k: 'Install time', v: '< 1 minute / lm' },
-        { k: 'Tooling', v: 'None required' },
-        { k: 'Application', v: 'Watertight concrete' },
+        { k: 'Special tooling', v: 'None required' },
+        { k: 'Application', v: 'Watertight concrete — base-to-wall' },
       ],
       imgAlt: 'FBZ centering element – precision foam part with central slit to receive the waterstop sheet',
     },
@@ -340,7 +343,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '01 — The problem',
       headline: 'Every second watertight concrete structure leaks.',
       lead:
-        'Watertight concrete structures fail in practice with alarming frequency — almost always at the same place: the waterstop at the base-slab-to-wall joint.',
+        'Watertight concrete structures fail in practice with alarming frequency, almost always at the same place: the waterstop at the base-slab-to-wall joint.',
       stats: [
         {
           value: '50',
@@ -357,12 +360,12 @@ export const content: Record<Locale, Content> = {
         {
           value: '10–100',
           unit: 'k€',
-          label: 'is the regular cost per case for retroactive injection remediation.',
+          label: 'is the regular cost per case for retroactive remediation.',
           source: 'Industry average',
         },
       ],
       errors: {
-        title: 'Four systematic sources of error during installation',
+        title: 'Five systematic sources of error during installation',
         intro:
           'These errors do not arise from lack of knowledge. They arise from time pressure, improvisation, and the absence of a reliable centering aid.',
         items: [
@@ -386,12 +389,17 @@ export const content: Record<Locale, Content> = {
             title: 'Wrong embedment depth',
             body: 'Too little or too much embedment into wall or slab — without any control tool.',
           },
+          {
+            num: '05',
+            title: 'Coating damage',
+            body: 'The waterstop coating is damaged during the pour — water tightness compromised.',
+          },
         ],
       },
     },
     solution: {
       eyebrow: '02 — The solution',
-      headline: 'One element. Three steps. No tools.',
+      headline: 'One element. Three steps. No special tools.',
       lead:
         'The FBZ is placed on the construction joint. The waterstop sheet slides into a precision slit and self-centers automatically. Concrete then encases the system and locks everything permanently in place.',
       steps: [
@@ -431,7 +439,7 @@ export const content: Record<Locale, Content> = {
         },
         {
           title: 'No special tools',
-          body: 'Simple handling — any worker can install the FBZ without training.',
+          body: 'Simple handling — any worker can install the FBZ after a brief instruction.',
         },
         {
           title: 'Economical',
@@ -443,13 +451,13 @@ export const content: Record<Locale, Content> = {
       eyebrow: '04 — Prevention vs. remediation',
       headline: 'A fraction of the cost. Without the damage.',
       lead:
-        'Retroactive injection remediation regularly runs into five- to six-figure costs per case — plus loss of use, expert reports, and legal disputes. The FBZ costs a fraction of that per linear meter.',
+        'Retroactive remediation regularly runs into five- to six-figure costs per case — plus loss of use, expert reports, and legal disputes. The FBZ costs a fraction of that per linear meter.',
       withoutLabel: 'Without FBZ',
       withLabel: 'With FBZ',
       rows: [
         {
           label: 'Action',
-          without: 'Retroactive injection remediation',
+          without: 'Retroactive remediation',
           with: 'Prevention through exact centering',
         },
         {
@@ -491,7 +499,7 @@ export const content: Record<Locale, Content> = {
     },
     credibility: {
       eyebrow: '06 — Manufacturer',
-      headline: 'Engineered from 30 years of damage assessment.',
+      headline: 'Engineered from 30 years of experience.',
       body:
         'The FBZ was developed by Dr. Ing. Jörn Budde — publicly appointed and sworn expert for building waterproofing and structural protection. From the pattern of thousands of damage cases at the base-to-wall joint emerged the first system that addresses the true root cause: centering.',
       facts: [
@@ -513,7 +521,6 @@ export const content: Record<Locale, Content> = {
     },
     footer: {
       company: 'BBA GmbH',
-      owner: 'Dr. Ing. Jörn Budde — Building Waterproofing and Structural Protection',
       address: 'Silberberger Chaussee 14, 15526 Bad Saarow, Germany',
       legal: 'Legal notice',
       patent: 'Patent pending: DE 10 2025 121 129.9',

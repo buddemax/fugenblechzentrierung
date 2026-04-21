@@ -24,10 +24,13 @@ const t = content[locale];
 
   <div class="grid-frame relative">
     <!-- Patent line -->
-    <div class="col-span-12 flex items-center gap-3 mb-10 md:mb-14">
-      <span class="label-blue">{t.hero.patentLabel}</span>
+    <div class="col-span-12 flex items-center gap-4 mb-10 md:mb-14">
+      <span class="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-blue text-blue font-mono text-[0.8125rem] md:text-sm font-bold uppercase tracking-[0.14em] bg-blue/5">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue animate-pulse"></span>
+        {t.hero.patentLabel}
+      </span>
       <span class="h-px flex-1 bg-ink-line max-w-[120px]"></span>
-      <span class="font-mono text-xs text-ink-soft tracking-wider">{t.hero.patentId}</span>
+      <span class="font-mono text-xs md:text-sm font-semibold text-ink tracking-wider">{t.hero.patentId}</span>
     </div>
 
     <!-- Headline -->

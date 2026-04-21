@@ -282,7 +282,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '06 — Hersteller',
       headline: 'Entwickelt aus 30 Jahren Erfahrung.',
       body:
-        'Die FBZ wurde von Dr. Ing. Jörn Budde entwickelt – öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus der Kenntnis tausender Schadensfälle am Boden-Wand-Anschluss entstand das erste System, das die eigentliche Ursache systematisch löst: die Zentrierung.',
+        'Die FBZ wurde von Dr. Ing. Jörn Budde entwickelt – Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus der Kenntnis tausender Schadensfälle am Boden-Wand-Anschluss entstand das erste System, das die eigentliche Ursache systematisch löst: die Zentrierung.',
       facts: [
         { k: 'Hersteller', v: 'BBA GmbH' },
         { k: 'Entwickler', v: 'Dr. Ing. Jörn Budde' },
@@ -501,7 +501,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '06 — Manufacturer',
       headline: 'Engineered from 30 years of experience.',
       body:
-        'The FBZ was developed by Dr. Ing. Jörn Budde — publicly appointed and sworn expert for building waterproofing and structural protection. From the pattern of thousands of damage cases at the base-to-wall joint emerged the first system that addresses the true root cause: centering.',
+        'The FBZ was developed by Dr. Ing. Jörn Budde — expert for building waterproofing and structural protection. From the pattern of thousands of damage cases at the base-to-wall joint emerged the first system that addresses the true root cause: centering.',
       facts: [
         { k: 'Manufacturer', v: 'BBA GmbH' },
         { k: 'Developer', v: 'Dr. Ing. Jörn Budde' },

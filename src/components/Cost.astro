@@ -7,65 +7,165 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = content[locale].cost;
+
+const panelHeadline = {
+  de: { without: 'Sanierung', with: 'Prävention' },
+  en: { without: 'Remediation', with: 'Prevention' },
+} as const;
+
+const cascadeLabels = {
+  de: { eyebrow: 'Schadenskaskade', stepLabel: 'Stufe' },
+  en: { eyebrow: 'Damage cascade', stepLabel: 'Stage' },
+} as const;
+
+const keyStat = {
+  de: { fromLabel: 'Sanierung je Schadensfall', toLabel: 'Mit FBZ', fromValue: '10–100 T€', toValue: 'Bruchteil' },
+  en: { fromLabel: 'Remediation per case', toLabel: 'With FBZ', fromValue: '€10–100k', toValue: 'Fraction' },
+} as const;
+
+const p = panelHeadline[locale];
+const c = cascadeLabels[locale];
+const k = keyStat[locale];
 ---
 
-<section class="py-[clamp(5rem,10vw,9rem)] border-t border-ink-line bg-ink text-paper">
-  <div class="grid-frame">
+<section class="relative py-[clamp(5rem,10vw,9rem)] border-t border-ink-line overflow-hidden">
+  <!-- Faint grid background for editorial texture -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.4]" aria-hidden="true">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="cost-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+          <path d="M 80 0 L 0 0 0 80" fill="none" stroke="oklch(88% 0.006 230)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#cost-grid)" />
+    </svg>
+  </div>
+
+  <!-- Headline + Key-Stat -->
+  <div class="grid-frame relative">
     <div class="col-span-12 lg:col-span-7">
-      <span class="label" style="color: oklch(74% 0.007 230);">{t.eyebrow}</span>
-      <h2 class="mt-6 text-display-lg font-display font-semibold leading-[0.98] text-balance text-paper">
+      <span class="label-blue">{t.eyebrow}</span>
+      <h2 class="mt-6 text-display-lg font-display font-semibold leading-[0.98] text-balance">
         {t.headline}
       </h2>
-      <p class="mt-8 text-[1.0625rem] md:text-lg leading-relaxed max-w-[58ch]" style="color: oklch(82% 0.007 230);">
+      <p class="mt-8 text-ink-soft text-[1.0625rem] md:text-lg leading-relaxed max-w-[58ch]">
         {t.lead}
       </p>
     </div>
 
-    <!-- Comparison table -->
-    <div class="col-span-12 mt-16 md:mt-24">
-      <div class="grid grid-cols-12 gap-0 border-t" style="border-color: oklch(30% 0.012 240);">
-        <!-- Header row -->
-        <div class="col-span-4"></div>
-        <div class="col-span-4 p-5 md:p-6 border-l" style="border-color: oklch(30% 0.012 240);">
-          <span class="label" style="color: oklch(72% 0.007 230);">{t.withoutLabel}</span>
-        </div>
-        <div class="col-span-4 p-5 md:p-6 border-l" style="border-color: oklch(30% 0.012 240); background: oklch(28% 0.08 238);">
-          <span class="label" style="color: oklch(78% 0.08 238);">{t.withLabel}</span>
+    <!-- Key-Stat: Mega transformation from cost-spectrum to fraction -->
+    <div class="col-span-12 lg:col-span-5 lg:col-start-8 mt-12 lg:mt-0 lg:pt-6">
+      <div class="relative border-t border-ink pt-8">
+        <span class="corner-mark corner-mark--tl"></span>
+        <span class="corner-mark corner-mark--tr"></span>
+
+        <div class="flex flex-col gap-2">
+          <span class="label text-[0.6875rem]">{k.fromLabel}</span>
+          <span
+            class="num-mega text-ink leading-[0.82]"
+            style="font-size: clamp(3rem, 7vw, 5.5rem);"
+            set:html={k.fromValue.replace(/[–-]/g, '<span class="num-dash">–</span>')}
+          />
         </div>
 
-        {t.rows.map((row) => (
-          <>
-            <div class="col-span-4 p-5 md:p-6 border-t" style="border-color: oklch(30% 0.012 240);">
-              <span class="label text-[0.6875rem]" style="color: oklch(62% 0.010 235);">{row.label}</span>
-            </div>
-            <div class="col-span-4 p-5 md:p-6 border-t border-l text-[0.9375rem] md:text-base leading-snug" style="border-color: oklch(30% 0.012 240); color: oklch(82% 0.007 230);">
-              {row.without}
-            </div>
-            <div class="col-span-4 p-5 md:p-6 border-t border-l text-[0.9375rem] md:text-base font-medium leading-snug" style="border-color: oklch(30% 0.012 240); color: oklch(94% 0.006 230); background: oklch(22% 0.05 238);">
-              {row.with}
-            </div>
-          </>
-        ))}
+        <div class="flex items-center gap-4 my-5">
+          <span class="text-ink-mute font-display text-2xl md:text-3xl" aria-hidden="true">↓</span>
+          <span class="h-px flex-1 bg-ink-line"></span>
+          <span class="label text-[0.6875rem] text-blue">{k.toLabel}</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <span
+            class="font-display font-semibold text-blue leading-[0.92] tracking-[-0.03em]"
+            style="font-size: clamp(2.5rem, 5.5vw, 4.25rem);"
+          >
+            {k.toValue}
+          </span>
+          <span class="label text-[0.6875rem]">{locale === 'de' ? '· pro Laufmeter' : '· per linear meter'}</span>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Damage cascade -->
-    <div class="col-span-12 mt-20 md:mt-28 pt-12 border-t" style="border-color: oklch(30% 0.012 240);">
-      <h3 class="font-display text-2xl md:text-[1.75rem] font-semibold leading-tight max-w-[48ch]" style="color: oklch(94% 0.006 230);">
+  <!-- Diptych: Ohne / Mit FBZ -->
+  <div class="grid-frame relative mt-20 md:mt-28">
+    <div class="col-span-12 md:col-span-6">
+      <article class="cost-panel cost-panel--warn h-full">
+        <span class="cost-panel__accent" aria-hidden="true"></span>
+        <header class="flex items-baseline justify-between gap-4 pb-6 border-b border-paper-warm-line" style="border-color: var(--color-paper-warm-line);">
+          <div class="flex flex-col gap-2">
+            <span class="font-mono text-[0.6875rem] tracking-[0.14em] uppercase font-semibold" style="color: var(--color-accent-warn);">{t.withoutLabel}</span>
+            <h3 class="font-display text-2xl md:text-3xl font-semibold leading-none text-ink">{p.without}</h3>
+          </div>
+          <span class="font-mono text-[0.75rem] tracking-wider text-ink-mute shrink-0">A</span>
+        </header>
+        <dl class="mt-6 space-y-5">
+          {t.rows.map((row, i) => (
+            <div class="grid grid-cols-12 gap-3 pb-5 border-b last:border-b-0 last:pb-0" style="border-color: var(--color-paper-warm-line);">
+              <dt class="col-span-12 md:col-span-5 flex items-baseline gap-2">
+                <span class="font-mono text-[0.6875rem] text-ink-mute tracking-wider">0{i + 1}</span>
+                <span class="label text-[0.6875rem] text-ink-soft">{row.label}</span>
+              </dt>
+              <dd class="col-span-12 md:col-span-7 font-display text-[0.9375rem] md:text-base font-medium leading-snug text-ink">
+                {row.without}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    </div>
+
+    <div class="col-span-12 md:col-span-6 mt-6 md:mt-0">
+      <article class="cost-panel cost-panel--gain h-full">
+        <span class="cost-panel__accent" aria-hidden="true"></span>
+        <header class="flex items-baseline justify-between gap-4 pb-6 border-b border-ink-line">
+          <div class="flex flex-col gap-2">
+            <span class="font-mono text-[0.6875rem] tracking-[0.14em] uppercase font-semibold text-blue">{t.withLabel}</span>
+            <h3 class="font-display text-2xl md:text-3xl font-semibold leading-none text-ink">{p.with}</h3>
+          </div>
+          <span class="font-mono text-[0.75rem] tracking-wider text-ink-mute shrink-0">B</span>
+        </header>
+        <dl class="mt-6 space-y-5">
+          {t.rows.map((row, i) => (
+            <div class="grid grid-cols-12 gap-3 pb-5 border-b border-ink-line last:border-b-0 last:pb-0">
+              <dt class="col-span-12 md:col-span-5 flex items-baseline gap-2">
+                <span class="font-mono text-[0.6875rem] text-blue tracking-wider">0{i + 1}</span>
+                <span class="label text-[0.6875rem] text-ink-soft">{row.label}</span>
+              </dt>
+              <dd class="col-span-12 md:col-span-7 font-display text-[0.9375rem] md:text-base font-medium leading-snug text-ink">
+                {row.with}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    </div>
+  </div>
+
+  <!-- Damage Cascade — horizontal timeline -->
+  <div class="grid-frame relative mt-20 md:mt-28 pt-12 border-t border-ink-line">
+    <div class="col-span-12 lg:col-span-8">
+      <span class="label-blue" style="color: var(--color-accent-warn);">{c.eyebrow}</span>
+      <h3 class="mt-5 font-display text-2xl md:text-[1.75rem] font-semibold leading-tight max-w-[48ch] text-ink">
         {t.cascade.title}
       </h3>
-      <ol class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-        {t.cascade.items.map((item, i) => (
-          <li class="flex gap-4 items-start">
-            <span class="font-mono text-[0.75rem] tracking-wider shrink-0 pt-1" style="color: oklch(65% 0.13 28);">
+    </div>
+
+    <ol class="col-span-12 mt-12 md:mt-16 cascade-track">
+      {t.cascade.items.map((item, i) => (
+        <li class="cascade-step">
+          <span class="cascade-step__dot" aria-hidden="true"></span>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-mono text-[0.6875rem] tracking-wider" style="color: var(--color-accent-warn);">
               0{i + 1}
             </span>
-            <span class="text-[0.9375rem] md:text-base leading-relaxed" style="color: oklch(84% 0.007 230);">
-              {item}
-            </span>
-          </li>
-        ))}
-      </ol>
-    </div>
+            <span class="label text-[0.6875rem]">{c.stepLabel}</span>
+          </div>
+          <p class="text-[0.9375rem] leading-snug text-ink-soft max-w-[28ch]">
+            {item}
+          </p>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>

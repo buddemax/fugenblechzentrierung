@@ -93,7 +93,7 @@ export const content: Record<Locale, Content> = {
     meta: {
       title: 'Fugenblechzentrierung FBZ – Präzise Zentrierung für WU-Bau',
       description:
-        'Die patentangemeldete FBZ zentriert Fugenbleche millimetergenau in der Arbeitsfuge zwischen Bodenplatte und Wand. Eliminiert die häufigste Schadensursache bei WU-Konstruktionen. Einbau unter einer Minute pro Laufmeter.',
+        'Die patentangemeldete FBZ zentriert Fugenbleche millimetergenau in der Arbeitsfuge zwischen Bodenplatte und Wand von WU-Konstruktionen. Reduziert eine häufige Ausführungsfehlerquelle am Boden-Wand-Anschluss. Einbau unter einer Minute pro Laufmeter.',
       ogAlt: 'FBZ Fugenblechzentrierung – 3D-Darstellung des Formteils',
     },
     nav: {
@@ -108,7 +108,7 @@ export const content: Record<Locale, Content> = {
       headlineLine1: 'Fugenbleche.',
       headlineLine2: 'Millimetergenau',
       headlineLine3: 'zentriert.',
-      sub: 'Die FBZ ist das erste Formteil, das Fugenbleche in der Arbeitsfuge zwischen Bodenplatte und Wand automatisch mittig positioniert – und während des Betoniervorgangs dort sicher hält.',
+      sub: 'Die FBZ ist ein patentangemeldetes Formteil, das Fugenbleche in der Arbeitsfuge zwischen Bodenplatte und Wand automatisch mittig positioniert – und während des Betoniervorgangs sicher in Lage hält.',
       ctaPrimary: 'Angebot anfordern',
       ctaSecondary: 'Wie es funktioniert',
       specLabel: 'Eckdaten',
@@ -122,27 +122,27 @@ export const content: Record<Locale, Content> = {
     },
     problem: {
       eyebrow: '01 — Das Problem',
-      headline: 'Jede zweite WU-Konstruktion hält nicht dicht.',
+      headline: 'Leckagen entstehen meist an derselben Stelle.',
       lead:
-        'WU-Konstruktionen scheitern in der Praxis mit erschreckender Häufigkeit, fast immer an derselben Stelle: dem Fugenblech am Boden-Wand-Anschluss.',
+        'Nach Sachverständigenerfahrung sind Undichtigkeiten bei Weißen Wannen häufig auf fehlerhaft geplante oder ausgeführte Durchdringungen, Öffnungen, Fugen und Anschlüsse zurückzuführen – besonders kritisch: die Arbeitsfuge zwischen Bodenplatte und Wand.',
       stats: [
         {
-          value: '50',
-          unit: '%',
-          label: 'aller WU-Bauwerke erreichen nicht die zugesicherte Wasserdichtheit.',
-          source: 'BVS Sachverständigenverband',
+          value: 'Immer',
+          unit: 'vorhanden',
+          label: 'Die Arbeitsfuge zwischen Bodenplatte und aufgehender Wand lässt sich konstruktiv nicht vermeiden – und gilt bei WU-Konstruktionen als anerkannter Schwachpunkt.',
+          source: 'BVS Sachverständigenverband · Standpunkt 04/2016',
         },
         {
-          value: '40',
-          unit: '%',
-          label: 'aller Schadensfälle entstehen am Boden-Wand-Anschluss durch fehlerhafte Fugenbleche.',
-          source: 'SV Arthur Heine, DBZ Fallstudien',
+          value: '5',
+          unit: 'Fehlerquellen',
+          label: 'am Fugenblech wirken beim Boden-Wand-Anschluss systematisch zusammen: Lageverschiebung, Randabstand, Zentrierung, Einbindetiefe und Beschichtung.',
+          source: 'TÜV SÜD Schulungsunterlage · DIBt/ETA · Herstellerangaben',
         },
         {
-          value: '10–100',
-          unit: 'T€',
-          label: 'kostet die Instandsetzung pro Schadensfall – regelmäßig.',
-          source: 'Branchendurchschnitt',
+          value: '5–6',
+          unit: 'stellig',
+          label: 'Typische Größenordnung einer nachträglichen Instandsetzung pro Schadensfall – zuzüglich Nutzungsausfall, Gutachten und möglicher Rechtsstreitigkeiten.',
+          source: 'DBZ Fallstudien · Fachliteratur Bauwerksabdichtung',
         },
       ],
       errors: {
@@ -158,7 +158,7 @@ export const content: Record<Locale, Content> = {
           {
             num: '02',
             title: 'Abstandsfehler zur Bewehrung',
-            body: 'Weniger als 3 cm Abstand – der Beton umfließt das Blech nicht vollständig.',
+            body: 'Mindestabstand nach Systemvorgabe unterschritten – der Beton umfließt das Fugenblech nicht vollständig.',
           },
           {
             num: '03',
@@ -212,11 +212,11 @@ export const content: Record<Locale, Content> = {
         },
         {
           title: 'Zeitersparnis',
-          body: 'Schneller Einbau ohne Improvisieren. Die empfohlenen 14 Tage Vorlauf werden einhaltbar.',
+          body: 'Schneller, standardisierter Einbau statt Improvisation auf der Baustelle – unter einer Minute pro Laufmeter.',
         },
         {
           title: 'Fehlerreduktion',
-          body: 'Die häufigste Schadensursache am Boden-Wand-Anschluss wird systematisch eliminiert.',
+          body: 'Eine häufige Ausführungsfehlerquelle am Boden-Wand-Anschluss wird systematisch reduziert.',
         },
         {
           title: 'Kein Spezialwerkzeug',
@@ -224,7 +224,7 @@ export const content: Record<Locale, Content> = {
         },
         {
           title: 'Wirtschaftlich',
-          body: 'Amortisation bereits vor dem ersten vermiedenen Schadensfall – allein durch Zeitersparnis.',
+          body: 'Spart Einbauzeit auf jedem Laufmeter und wirkt einer der teuersten Ursachen für Folgekosten entgegen: undichten Arbeitsfugen.',
         },
       ],
     },
@@ -232,7 +232,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '04 — Prävention vs. Sanierung',
       headline: 'Ein Bruchteil der Kosten. Ohne den Schaden.',
       lead:
-        'Eine nachträgliche Instandsetzung kostet pro Schadensfall regelmäßig einen fünf- bis sechsstelligen Betrag – zuzüglich Nutzungsausfall, Gutachten und Rechtsstreit. Die FBZ kostet einen Bruchteil davon pro Laufmeter.',
+        'Eine nachträgliche Instandsetzung an der Arbeitsfuge bewegt sich pro Schadensfall regelmäßig im fünf- bis sechsstelligen Bereich – zuzüglich Nutzungsausfall, Gutachten und möglicher Rechtsstreitigkeiten. Die FBZ kostet einen Bruchteil davon pro Laufmeter.',
       withoutLabel: 'Ohne FBZ',
       withLabel: 'Mit FBZ',
       rows: [
@@ -243,7 +243,7 @@ export const content: Record<Locale, Content> = {
         },
         {
           label: 'Direkte Kosten',
-          without: '10.000 – 100.000+ €',
+          without: 'Fünf- bis sechsstellig pro Fall',
           with: 'Bruchteil davon, pro Laufmeter',
         },
         {
@@ -280,9 +280,9 @@ export const content: Record<Locale, Content> = {
     },
     credibility: {
       eyebrow: '06 — Hersteller',
-      headline: 'Entwickelt aus 30 Jahren Erfahrung.',
+      headline: 'Entwickelt aus langjähriger Sachverständigenpraxis.',
       body:
-        'Die FBZ wurde von Dr. Ing. Jörn Budde entwickelt – Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus der Kenntnis tausender Schadensfälle am Boden-Wand-Anschluss entstand das erste System, das die eigentliche Ursache systematisch löst: die Zentrierung.',
+        'Die FBZ wurde von Dr. Ing. Jörn Budde entwickelt – Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus langjähriger Begutachtungspraxis am Boden-Wand-Anschluss entstand ein Formteil, das die Zentrierung des Fugenblechs standardisiert und eine häufige Ausführungsfehlerquelle reduziert.',
       facts: [
         { k: 'Hersteller', v: 'BBA GmbH' },
         { k: 'Entwickler', v: 'Dr. Ing. Jörn Budde' },
@@ -312,7 +312,7 @@ export const content: Record<Locale, Content> = {
     meta: {
       title: 'Waterstop Centering FBZ – Precision Alignment for Watertight Concrete',
       description:
-        'The patent-pending FBZ positions waterstop sheets perfectly centered in the construction joint between base slab and wall. Eliminates the leading cause of failure in watertight concrete structures. Installation under one minute per linear meter.',
+        'The patent-pending FBZ positions waterstop sheets perfectly centered in the construction joint between base slab and wall in watertight concrete structures. Reduces a common installation error at the base-to-wall joint. Installation under one minute per linear meter.',
       ogAlt: 'FBZ Fugenblechzentrierung – 3D view of the foam centering element',
     },
     nav: {
@@ -327,7 +327,7 @@ export const content: Record<Locale, Content> = {
       headlineLine1: 'Waterstops.',
       headlineLine2: 'Perfectly',
       headlineLine3: 'centered.',
-      sub: 'The FBZ is the first formed element that automatically positions waterstop sheets dead-center in the construction joint between base slab and wall — and holds them there through the entire pour.',
+      sub: 'The FBZ is a patent-pending formed element that automatically positions waterstop sheets dead-center in the construction joint between base slab and wall — and holds them securely in place throughout the entire pour.',
       ctaPrimary: 'Request a quote',
       ctaSecondary: 'How it works',
       specLabel: 'Specification',
@@ -341,27 +341,27 @@ export const content: Record<Locale, Content> = {
     },
     problem: {
       eyebrow: '01 — The problem',
-      headline: 'Every second watertight concrete structure leaks.',
+      headline: 'Leaks almost always appear in the same place.',
       lead:
-        'Watertight concrete structures fail in practice with alarming frequency, almost always at the same place: the waterstop at the base-slab-to-wall joint.',
+        'Expert practice shows that leaks in watertight concrete structures usually trace back to poorly designed or executed penetrations, openings, joints and connections — with the construction joint between base slab and wall being especially critical.',
       stats: [
         {
-          value: '50',
-          unit: '%',
-          label: 'of watertight concrete structures fail to achieve the specified water tightness.',
-          source: 'BVS German Experts Association',
+          value: 'Always',
+          unit: 'present',
+          label: 'The construction joint between base slab and rising wall is structurally unavoidable — and a recognised weak detail in watertight concrete.',
+          source: 'BVS Experts Association · position paper 04/2016',
         },
         {
-          value: '40',
-          unit: '%',
-          label: 'of all damage cases originate at the base-to-wall joint due to faulty waterstops.',
-          source: 'Expert Arthur Heine, DBZ case studies',
+          value: '5',
+          unit: 'error sources',
+          label: 'at the waterstop combine at the base-to-wall joint: displacement, clearance, centering, embedment and coating damage.',
+          source: 'TÜV SÜD training material · DIBt/ETA · manufacturer documentation',
         },
         {
-          value: '10–100',
-          unit: 'k€',
-          label: 'is the regular cost per case for retroactive remediation.',
-          source: 'Industry average',
+          value: '5–6',
+          unit: 'figure',
+          label: 'Typical order of magnitude for retroactive remediation per case — plus loss of use, expert reports and potential legal disputes.',
+          source: 'DBZ case studies · waterproofing literature',
         },
       ],
       errors: {
@@ -377,7 +377,7 @@ export const content: Record<Locale, Content> = {
           {
             num: '02',
             title: 'Insufficient rebar clearance',
-            body: 'Less than 3 cm clearance — concrete fails to fully encase the sheet.',
+            body: 'Minimum clearance per system specification not met — concrete fails to fully encase the waterstop.',
           },
           {
             num: '03',
@@ -431,11 +431,11 @@ export const content: Record<Locale, Content> = {
         },
         {
           title: 'Time saved',
-          body: 'Fast installation without improvisation. The recommended 14 days of lead time become feasible.',
+          body: 'Fast, standardised installation instead of improvisation on site — under one minute per linear meter.',
         },
         {
           title: 'Error reduction',
-          body: 'The leading cause of failure at the base-to-wall joint is systematically eliminated.',
+          body: 'A common installation error source at the base-to-wall joint is systematically reduced.',
         },
         {
           title: 'No special tools',
@@ -443,7 +443,7 @@ export const content: Record<Locale, Content> = {
         },
         {
           title: 'Economical',
-          body: 'Pays for itself before the first avoided damage case — through time savings alone.',
+          body: 'Saves installation time on every linear meter and counters one of the costliest causes of follow-up damage: leaking construction joints.',
         },
       ],
     },
@@ -451,7 +451,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '04 — Prevention vs. remediation',
       headline: 'A fraction of the cost. Without the damage.',
       lead:
-        'Retroactive remediation regularly runs into five- to six-figure costs per case — plus loss of use, expert reports, and legal disputes. The FBZ costs a fraction of that per linear meter.',
+        'Retroactive remediation at the construction joint regularly runs in the five- to six-figure range per case — plus loss of use, expert reports and potential legal disputes. The FBZ costs a fraction of that per linear meter.',
       withoutLabel: 'Without FBZ',
       withLabel: 'With FBZ',
       rows: [
@@ -462,7 +462,7 @@ export const content: Record<Locale, Content> = {
         },
         {
           label: 'Direct cost',
-          without: '€10,000 – €100,000+',
+          without: 'Five- to six-figure per case',
           with: 'A fraction, per linear meter',
         },
         {
@@ -499,9 +499,9 @@ export const content: Record<Locale, Content> = {
     },
     credibility: {
       eyebrow: '06 — Manufacturer',
-      headline: 'Engineered from 30 years of experience.',
+      headline: 'Engineered from long-standing expert practice.',
       body:
-        'The FBZ was developed by Dr. Ing. Jörn Budde — expert for building waterproofing and structural protection. From the pattern of thousands of damage cases at the base-to-wall joint emerged the first system that addresses the true root cause: centering.',
+        'The FBZ was developed by Dr. Ing. Jörn Budde — expert for building waterproofing and structural protection. Emerging from many years of expert practice at the base-to-wall joint, the element standardises waterstop centering and reduces a common source of installation error.',
       facts: [
         { k: 'Manufacturer', v: 'BBA GmbH' },
         { k: 'Developer', v: 'Dr. Ing. Jörn Budde' },

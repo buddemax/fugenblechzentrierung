@@ -271,7 +271,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '05 — Einsatzbereiche',
       headline: 'Wo die FBZ zum Einsatz kommt.',
       items: [
-        'Tiefgaragenböden und -wände',
+        'Tiefgaragenböden im Bodenplatten-Wandanschlussbereich',
         'Keller und Untergeschosse mit Grundwasserbeanspruchung',
         'Industriebauten mit wasserdichten Betonkonstruktionen',
         'Systembau-Projekte mit engen Taktzeiten',
@@ -490,7 +490,7 @@ export const content: Record<Locale, Content> = {
       eyebrow: '05 — Applications',
       headline: 'Where the FBZ is used.',
       items: [
-        'Underground car park slabs and walls',
+        'Underground car park floors at the base slab-to-wall junction',
         'Basements and cellars exposed to groundwater',
         'Industrial buildings with watertight concrete',
         'System-build projects with tight schedules',

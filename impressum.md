@@ -8,7 +8,8 @@ Vertreten durch
 Geschäftsführer: Dr.-Ing. Jörn Budde
 
 Kontakt
-Telefon: 033 631 / 58 376
+Telefon Büro 1: 033 631 / 58 374
+Telefon Büro 2: 033 631 / 58 376
 Fax: 033 631 / 58 375
 E-Mail: info@bba-badsaarow.de
 

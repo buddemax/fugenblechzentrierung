@@ -8,10 +8,10 @@ interface Props {
 const { locale } = Astro.props;
 const t = content[locale].cta;
 const email = 'info@bba-badsaarow.de';
-const phoneOffice = '+49 33631 58376';
-const phoneOfficeHref = 'tel:+493363158376';
-const phoneOfficeAlt = '+49 33631 58375';
-const phoneOfficeAltHref = 'tel:+493363158375';
+const phoneOffice = '+49 33631 58374';
+const phoneOfficeHref = 'tel:+493363158374';
+const phoneOfficeAlt = '+49 33631 58376';
+const phoneOfficeAltHref = 'tel:+493363158376';
 const phoneMobile = '+49 174 4935860';
 const phoneMobileHref = 'tel:+491744935860';
 const contacts = [
@@ -71,7 +71,7 @@ const mailHref = `mailto:${email}?subject=${subject}&body=${body}`;
             <dt class="label text-[0.6875rem]">{t.phoneLabel}</dt>
             <dd class="mt-1.5 space-y-2">
               <div class="flex items-baseline gap-3">
-                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro' : 'Office'}</span>
+                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro 1' : 'Office 1'}</span>
                 <a href={phoneOfficeHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOffice}</a>
               </div>
               <div class="flex items-baseline gap-3">

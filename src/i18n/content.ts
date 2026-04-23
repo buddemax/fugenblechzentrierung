@@ -29,6 +29,7 @@ type Content = {
     eyebrow: string;
     headline: string;
     lead: string;
+    keyInsight: { eyebrow: string; title: string; body: string; source: string };
     stats: { value: string; unit: string; label: string; source: string }[];
     errors: {
       title: string;
@@ -125,13 +126,13 @@ export const content: Record<Locale, Content> = {
       headline: 'Leckagen entstehen meist an derselben Stelle.',
       lead:
         'Nach Sachverständigenerfahrung sind Undichtigkeiten bei Weißen Wannen häufig auf fehlerhaft geplante oder ausgeführte Durchdringungen, Öffnungen, Fugen und Anschlüsse zurückzuführen – besonders kritisch: die Arbeitsfuge zwischen Bodenplatte und Wand.',
+      keyInsight: {
+        eyebrow: 'Der kritische Punkt',
+        title: 'Die Arbeitsfuge zwischen Bodenplatte und Wand ist der wiederkehrende Schwachpunkt jeder WU-Konstruktion.',
+        body: 'Sie entsteht bauartbedingt in jedem WU-Bauwerk – genau dort, wo später Wasserdruck, Grundwasser und Feuchtigkeit auf die Konstruktion treffen. Fehler beim Einbau des Fugenblechs wirken sich hier direkt auf die Dichtheit aus.',
+        source: 'BVS Sachverständigenverband · Standpunkt 04/2016',
+      },
       stats: [
-        {
-          value: 'Immer',
-          unit: 'vorhanden',
-          label: 'Die Arbeitsfuge zwischen Bodenplatte und aufgehender Wand lässt sich konstruktiv nicht vermeiden – und gilt bei WU-Konstruktionen als anerkannter Schwachpunkt.',
-          source: 'BVS Sachverständigenverband · Standpunkt 04/2016',
-        },
         {
           value: '5',
           unit: 'Fehlerquellen',
@@ -344,13 +345,13 @@ export const content: Record<Locale, Content> = {
       headline: 'Leaks almost always appear in the same place.',
       lead:
         'Expert practice shows that leaks in watertight concrete structures usually trace back to poorly designed or executed penetrations, openings, joints and connections — with the construction joint between base slab and wall being especially critical.',
+      keyInsight: {
+        eyebrow: 'The critical point',
+        title: 'The construction joint between base slab and rising wall is the recurring weak point of every watertight concrete structure.',
+        body: 'It arises by design in every watertight structure — exactly where water pressure, groundwater and moisture later meet the concrete. Errors when installing the waterstop translate directly into leakage.',
+        source: 'BVS Experts Association · position paper 04/2016',
+      },
       stats: [
-        {
-          value: 'Always',
-          unit: 'present',
-          label: 'The construction joint between base slab and rising wall is structurally unavoidable — and a recognised weak detail in watertight concrete.',
-          source: 'BVS Experts Association · position paper 04/2016',
-        },
         {
           value: '5',
           unit: 'error sources',

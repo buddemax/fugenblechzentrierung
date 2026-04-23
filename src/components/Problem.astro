@@ -24,6 +24,24 @@ const t = content[locale].problem;
         {t.lead}
       </p>
 
+      <article
+        class="relative mt-14 md:mt-16 border p-8 md:p-10"
+        style="background: var(--color-paper-warm); border-color: var(--color-paper-warm-line);"
+      >
+        <span class="corner-mark corner-mark--tl" aria-hidden="true"></span>
+        <span class="corner-mark corner-mark--tr" aria-hidden="true"></span>
+        <span class="label-blue">{t.keyInsight.eyebrow}</span>
+        <h3 class="mt-5 font-display text-2xl md:text-[1.875rem] font-semibold leading-[1.15] text-balance max-w-[32ch]">
+          {t.keyInsight.title}
+        </h3>
+        <p class="mt-5 max-w-[52ch] text-ink-soft text-[1.0625rem] leading-relaxed">
+          {t.keyInsight.body}
+        </p>
+        <p class="mt-6 label text-[0.6875rem]">
+          {locale === 'de' ? 'Quelle' : 'Source'} — {t.keyInsight.source}
+        </p>
+      </article>
+
       <div class="mt-16 space-y-12 md:space-y-16">
         {t.stats.map((stat, i) => (
           <div class="relative">

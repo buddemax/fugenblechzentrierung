@@ -35,10 +35,10 @@ const t = content[locale];
     </div>
 
     <!-- Headline -->
-    <div class="col-span-12 lg:col-span-5 xl:col-span-5 relative z-10">
+    <div class="col-span-12 lg:col-span-6 xl:col-span-6 relative z-10 lg:pr-6 xl:pr-10">
       <h1 class="hero-headline font-display font-semibold text-balance">
         <span class="block">{t.hero.headlineLine1}</span>
-        <span class="block">{t.hero.headlineLine2}</span>
+        <span class="block hero-headline__wrap">{t.hero.headlineLine2}</span>
         <span class="block text-blue italic" style="font-style: italic;">{t.hero.headlineLine3}</span>
       </h1>
 
@@ -59,7 +59,7 @@ const t = content[locale];
     </div>
 
     <!-- Video stage (replaces hero rendering) -->
-    <div class="col-span-12 lg:col-span-7 mt-12 lg:mt-0 relative">
+    <div class="col-span-12 lg:col-span-6 mt-12 lg:mt-0 relative">
       <div class="hero-video-bleed relative lg:-mt-10 xl:-mt-12">
         <VideoHero locale={locale} />
       </div>
@@ -86,10 +86,20 @@ const t = content[locale];
   /* Hero headline scale — compact on small viewports, dominant on mid,
      gracefully capped on very large so it does not crush video real estate. */
   .hero-headline {
-    font-size: clamp(2.75rem, 5.6vw, 5.25rem);
-    line-height: 0.96;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.5rem, 4.6vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
     color: var(--color-ink);
+  }
+
+  /* Long German compounds like "Millimetergenau" need word-level wrapping
+     when the column gets tight. Hyphenation only kicks in if the line
+     overflows, otherwise the word stays whole. */
+  .hero-headline__wrap {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
 
   /* Bleed video to viewport right edge across all breakpoints,

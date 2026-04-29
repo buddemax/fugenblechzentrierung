@@ -1,0 +1,213 @@
+---
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const v = content[locale].video;
+
+const VIDEO_HEVC = 'https://oatucv4cwba4mznn.public.blob.vercel-storage.com/FBZ_2026_deutsch_720p.mp4';
+const VIDEO_H264 = 'https://oatucv4cwba4mznn.public.blob.vercel-storage.com/FBZ_2026_deutsch_720p_h264.mp4';
+---
+
+<figure
+  class="video-stage relative"
+  data-video-stage
+  aria-labelledby="video-stage-caption"
+>
+  <div class="relative aspect-[16/9] bg-ink/[0.03]">
+    <span class="corner-mark corner-mark--tl"></span>
+    <span class="corner-mark corner-mark--tr"></span>
+    <span class="corner-mark corner-mark--bl"></span>
+    <span class="corner-mark corner-mark--br"></span>
+
+    <button
+      type="button"
+      class="video-poster group absolute inset-0 w-full h-full overflow-hidden"
+      data-video-play
+      aria-label={v.playLabel}
+    >
+      <picture>
+        <source
+          type="image/webp"
+          srcset="/video-poster-800.webp 800w, /video-poster-1280.webp 1280w, /video-poster-1600.webp 1600w"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+        />
+        <img
+          src="/video-poster.jpg"
+          alt={v.posterAlt}
+          width="1280"
+          height="720"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="w-full h-full object-cover select-none"
+          draggable="false"
+        />
+      </picture>
+
+      <span class="video-vignette pointer-events-none absolute inset-0" aria-hidden="true"></span>
+
+      <span class="video-cta absolute left-4 bottom-4 md:left-5 md:bottom-5 flex items-stretch bg-paper border border-ink-line shadow-[0_8px_24px_-12px_rgba(0,0,0,0.35)]">
+        <span class="play-circle relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-ink">
+          <svg viewBox="0 0 14 14" class="w-4 h-4 md:w-[18px] md:h-[18px] text-paper fill-current" aria-hidden="true">
+            <path d="M2 1.5 L12 7 L2 12.5 Z" />
+          </svg>
+        </span>
+        <span class="play-label flex flex-col justify-center gap-0.5 px-4 md:px-5 py-2 md:py-2.5">
+          <span class="font-mono text-[0.625rem] md:text-[0.6875rem] tracking-[0.16em] uppercase text-ink-mute font-medium">
+            {v.playMeta}
+          </span>
+          <span class="font-display text-base md:text-lg font-semibold text-ink leading-none whitespace-nowrap">
+            {v.playPrompt}
+          </span>
+        </span>
+      </span>
+    </button>
+
+    <video
+      class="video-element absolute inset-0 w-full h-full object-cover bg-black"
+      controls
+      playsinline
+      preload="none"
+      poster="/video-poster.jpg"
+      hidden
+      data-video-element
+      aria-label={v.videoAriaLabel}
+    >
+      <source src={VIDEO_HEVC} type='video/mp4; codecs="hvc1"' />
+      <source src={VIDEO_H264} type='video/mp4; codecs="avc1.4d401f"' />
+    </video>
+  </div>
+
+  <figcaption
+    id="video-stage-caption"
+    class="mt-4 md:mt-5 flex items-baseline justify-between gap-4 border-t border-ink-line pt-3"
+  >
+    <span class="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-ink-mute font-medium">
+      {v.captionMeta}
+    </span>
+    <span class="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-ink-mute font-medium">
+      {v.captionRef}
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .video-stage {
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .video-poster {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .video-poster:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 4px;
+  }
+
+  .video-vignette {
+    background:
+      linear-gradient(
+        to top,
+        oklch(0% 0 0 / 0.18) 0%,
+        oklch(0% 0 0 / 0.02) 35%,
+        transparent 65%
+      );
+    transition: background 320ms var(--ease-out-quart);
+  }
+
+  .video-poster:hover .video-vignette {
+    background:
+      linear-gradient(
+        to top,
+        oklch(0% 0 0 / 0.24) 0%,
+        oklch(0% 0 0 / 0.05) 40%,
+        transparent 70%
+      );
+  }
+
+  .video-cta {
+    transition:
+      transform 320ms var(--ease-out-quart),
+      box-shadow 320ms var(--ease-out-quart);
+  }
+
+  .play-circle {
+    transition: background 320ms var(--ease-out-quart);
+  }
+
+  .play-circle svg {
+    transition: transform 320ms var(--ease-out-quart);
+    margin-left: 2px;
+  }
+
+  .video-poster:hover .video-cta {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.45);
+  }
+
+  .video-poster:hover .play-circle {
+    background: var(--color-blue);
+  }
+
+  .video-poster:hover .play-circle svg {
+    transform: translateX(2px);
+  }
+
+  .video-poster:active .video-cta {
+    transform: translateY(0);
+  }
+
+  .video-element[hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-vignette,
+    .video-cta,
+    .play-circle,
+    .play-circle svg {
+      transition: none !important;
+    }
+    .video-poster:hover .video-cta,
+    .video-poster:hover .play-circle svg {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const stages = document.querySelectorAll<HTMLElement>('[data-video-stage]');
+  stages.forEach((stage) => {
+    const button = stage.querySelector<HTMLButtonElement>('[data-video-play]');
+    const video = stage.querySelector<HTMLVideoElement>('[data-video-element]');
+    if (!button || !video) return;
+
+    const startPlayback = () => {
+      button.hidden = true;
+      video.hidden = false;
+      video.focus({ preventScroll: true });
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          // Autoplay blocked — native controls remain.
+        });
+      }
+    };
+
+    button.addEventListener('click', startPlayback);
+    button.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        startPlayback();
+      }
+    });
+  });
+</script>

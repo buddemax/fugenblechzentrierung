@@ -44,6 +44,25 @@ type Content = {
     steps: { num: string; title: string; body: string }[];
     timing: { label: string; value: string };
   };
+  video: {
+    posterAlt: string;
+    playLabel: string;
+    playMeta: string;
+    playPrompt: string;
+    metaTop: string;
+    captionMeta: string;
+    captionRef: string;
+    videoAriaLabel: string;
+  };
+  detail: {
+    eyebrow: string;
+    label: string;
+    headline: string;
+    lead: string;
+    imgAlt: string;
+    annotations: { k: string; v: string }[];
+    note: string;
+  };
   benefits: {
     eyebrow: string;
     headline: string;
@@ -202,6 +221,31 @@ export const content: Record<Locale, Content> = {
         },
       ],
       timing: { label: 'Einbauzeit', value: 'unter 1 Minute pro Laufmeter' },
+    },
+    video: {
+      posterAlt: 'FBZ Fugenblechzentrierung im Einbau – Produktlabel mit Patentnummer auf dem Bewehrungskorb der Arbeitsfuge.',
+      playLabel: 'Produktvideo abspielen – Fugenblechzentrierung im Einbau, 2 Minuten 30 Sekunden, Audio Deutsch',
+      playMeta: 'Im Einbau · 02:30',
+      playPrompt: 'Video ansehen',
+      metaTop: 'Aufnahme · Baustelle',
+      captionMeta: 'Video / 720p / Audio · DE',
+      captionRef: 'Patent · DE 10 2025 121 129.9',
+      videoAriaLabel: 'Produktvideo Fugenblechzentrierung – Einbau auf der Baustelle',
+    },
+    detail: {
+      eyebrow: '— Bauteildetail',
+      label: 'Geometrie',
+      headline: 'Das Bauteil.',
+      lead:
+        'Schaumstoff-Formteil mit präzisem Mittelschlitz. Aufnahme für das Fugenblech, definierte Einbindetiefe, definierter Bewehrungsabstand. Kein bewegliches Teil. Einsatz von Hand, ohne Werkzeug.',
+      imgAlt: 'FBZ Fugenblechzentrierung – 3D-Darstellung des Schaumstoff-Formteils mit zentralem Schlitz zur Aufnahme des Fugenblechs',
+      annotations: [
+        { k: 'Aufnahme', v: 'Mittelschlitz' },
+        { k: 'Material', v: 'Schaumstoff-Formteil' },
+        { k: 'Maß (typ.)', v: '100 × 5 mm' },
+        { k: 'Einbau', v: 'Manuell, werkzeugfrei' },
+      ],
+      note: 'Patent angemeldet · DE 10 2025 121 129.9',
     },
     benefits: {
       eyebrow: '03 — Kernvorteile',
@@ -421,6 +465,31 @@ export const content: Record<Locale, Content> = {
         },
       ],
       timing: { label: 'Install time', value: 'under 1 minute per linear meter' },
+    },
+    video: {
+      posterAlt: 'FBZ waterstop centering element on site – product label with patent number visible on the rebar cage of the construction joint.',
+      playLabel: 'Play product video – waterstop centering on site, 2 minutes 30 seconds, audio in German',
+      playPrompt: 'Watch video',
+      playMeta: 'On site · 02:30',
+      metaTop: 'Footage · Site',
+      captionMeta: 'Video / 720p / Audio · DE',
+      captionRef: 'Patent · DE 10 2025 121 129.9',
+      videoAriaLabel: 'Product video waterstop centering – installation on site',
+    },
+    detail: {
+      eyebrow: '— Element detail',
+      label: 'Geometry',
+      headline: 'The element.',
+      lead:
+        'Moulded foam element with a precision center slit. Receives the waterstop sheet, defines embedment depth, defines rebar clearance. No moving parts. Installed by hand, no tools.',
+      imgAlt: 'FBZ waterstop centering element – 3D view of the moulded foam part with central slit to receive the waterstop sheet',
+      annotations: [
+        { k: 'Receptacle', v: 'Center slit' },
+        { k: 'Material', v: 'Moulded foam' },
+        { k: 'Size (typ.)', v: '100 × 5 mm' },
+        { k: 'Install', v: 'Manual, tool-free' },
+      ],
+      note: 'Patent pending · DE 10 2025 121 129.9',
     },
     benefits: {
       eyebrow: '03 — Key benefits',

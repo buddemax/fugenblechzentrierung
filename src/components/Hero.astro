@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '~/i18n/content';
 import { content } from '~/i18n/content';
+import VideoHero from '~/components/VideoHero.astro';
 
 interface Props {
   locale: Locale;
@@ -57,36 +58,10 @@ const t = content[locale];
       </div>
     </div>
 
-    <!-- Rendering -->
+    <!-- Video stage (replaces hero rendering) -->
     <div class="col-span-12 lg:col-span-5 mt-12 lg:mt-0 relative">
-      <div class="relative lg:-mt-16 xl:-mt-20">
-        <!-- Corner marks framing the image -->
-        <div class="relative aspect-square max-w-[520px] lg:max-w-none lg:ml-auto">
-          <span class="corner-mark corner-mark--tl"></span>
-          <span class="corner-mark corner-mark--tr"></span>
-          <span class="corner-mark corner-mark--bl"></span>
-          <span class="corner-mark corner-mark--br"></span>
-          <picture>
-            <source srcset="/rendering-fbz.webp" type="image/webp" />
-            <img
-              src="/rendering-fbz-1200.png"
-              alt={t.hero.imgAlt}
-              width="1200"
-              height="1200"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              class="w-full h-full object-contain select-none"
-              draggable="false"
-            />
-          </picture>
-        </div>
-
-        <!-- Technical annotations -->
-        <div class="hidden md:flex absolute right-2 -bottom-7 items-center gap-2 whitespace-nowrap">
-          <span class="label text-[0.6875rem]">Formteil / Element</span>
-          <span class="w-6 h-px bg-ink-soft"></span>
-        </div>
+      <div class="relative lg:-mt-12 xl:-mt-16 max-w-[640px] lg:max-w-none lg:ml-auto">
+        <VideoHero locale={locale} />
       </div>
     </div>
 

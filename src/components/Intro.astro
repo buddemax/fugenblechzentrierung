@@ -1,0 +1,41 @@
+---
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale].intro;
+---
+
+<section
+  id="about"
+  aria-labelledby="intro-eyebrow"
+  class="py-[clamp(3.5rem,7vw,6rem)] border-t border-ink-line bg-[oklch(97%_0.005_230)]"
+>
+  <div class="grid-frame">
+    <div class="col-span-12 lg:col-span-4">
+      <h2 id="intro-eyebrow" class="label-blue">
+        {t.eyebrow}
+      </h2>
+    </div>
+
+    <div class="col-span-12 lg:col-span-8">
+      <p class="text-ink text-[1.0625rem] md:text-lg leading-[1.65] max-w-[68ch]">
+        {t.body}
+      </p>
+
+      <dl class="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 border-t border-ink-line pt-6">
+        {[t.factA, t.factB, t.factC].map((fact) => (
+          <div class="flex flex-col gap-1.5">
+            <dt class="label text-[0.6875rem]">{fact.k}</dt>
+            <dd class="font-display text-base md:text-lg font-medium text-ink leading-snug tracking-tight">
+              {fact.v}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>

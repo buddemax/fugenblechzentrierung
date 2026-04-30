@@ -27,6 +27,7 @@ type Content = {
   };
   problem: {
     eyebrow: string;
+    question: string;
     headline: string;
     lead: string;
     keyInsight: { eyebrow: string; title: string; body: string; source: string };
@@ -39,6 +40,7 @@ type Content = {
   };
   solution: {
     eyebrow: string;
+    question: string;
     headline: string;
     lead: string;
     steps: { num: string; title: string; body: string }[];
@@ -62,6 +64,13 @@ type Content = {
     imgAlt: string;
     annotations: { k: string; v: string }[];
     note: string;
+  };
+  intro: {
+    eyebrow: string;
+    body: string;
+    factA: { k: string; v: string };
+    factB: { k: string; v: string };
+    factC: { k: string; v: string };
   };
   benefits: {
     eyebrow: string;
@@ -142,6 +151,7 @@ export const content: Record<Locale, Content> = {
     },
     problem: {
       eyebrow: '01 — Das Problem',
+      question: 'Wo entstehen Leckagen bei WU-Konstruktionen am häufigsten?',
       headline: 'Leckagen entstehen meist an derselben Stelle.',
       lead:
         'Nach Sachverständigenerfahrung sind Undichtigkeiten bei Weißen Wannen häufig auf fehlerhaft geplante oder ausgeführte Durchdringungen, Öffnungen, Fugen und Anschlüsse zurückzuführen – besonders kritisch: die Arbeitsfuge zwischen Bodenplatte und Wand.',
@@ -149,24 +159,24 @@ export const content: Record<Locale, Content> = {
         eyebrow: 'Der kritische Punkt',
         title: 'Die Arbeitsfuge zwischen Bodenplatte und Wand ist der wiederkehrende Schwachpunkt jeder WU-Konstruktion.',
         body: 'Sie entsteht bauartbedingt in jedem WU-Bauwerk – genau dort, wo später Wasserdruck, Grundwasser und Feuchtigkeit auf die Konstruktion treffen. Fehler beim Einbau des Fugenblechs wirken sich hier direkt auf die Dichtheit aus.',
-        source: 'BVS Sachverständigenverband · Standpunkt 04/2016',
+        source: 'Sachverständigenpraxis · DAfStb-Richtlinie WU-Beton',
       },
       stats: [
         {
           value: '5',
           unit: 'Fehlerquellen',
           label: 'am Fugenblech wirken beim Boden-Wand-Anschluss systematisch zusammen: Lageverschiebung, Randabstand, Zentrierung, Einbindetiefe und Beschichtung.',
-          source: 'TÜV SÜD Schulungsunterlage · DIBt/ETA · Herstellerangaben',
+          source: 'Sachverständigenpraxis · Begutachtung Boden-Wand-Anschluss',
         },
         {
           value: '5–6',
           unit: 'stellig',
           label: 'Typische Größenordnung einer nachträglichen Instandsetzung pro Schadensfall – zuzüglich Nutzungsausfall, Gutachten und möglicher Rechtsstreitigkeiten.',
-          source: 'DBZ Fallstudien · Fachliteratur Bauwerksabdichtung',
+          source: 'Sachverständigenpraxis · Bauwerksabdichtung',
         },
       ],
       errors: {
-        title: 'Fünf systematische Fehlerquellen beim Einbau',
+        title: 'Die 5 Fehlerquellen am Fugenblech',
         intro:
           'Diese Fehler entstehen nicht durch Unwissenheit, sondern durch Zeitdruck, Improvisation und das Fehlen einer verlässlichen Zentrierhilfe.',
         items: [
@@ -200,6 +210,7 @@ export const content: Record<Locale, Content> = {
     },
     solution: {
       eyebrow: '02 — Die Lösung',
+      question: 'Wie wird das Fugenblech mit der FBZ eingebaut?',
       headline: 'Ein Formteil. Drei Schritte. Kein Spezialwerkzeug.',
       lead:
         'Die FBZ wird auf die Arbeitsfuge aufgesetzt. Das Fugenblech gleitet in einen präzisen Schlitz und zentriert sich dabei automatisch. Der Beton umschließt das System und fixiert alles dauerhaft in der richtigen Position.',
@@ -221,6 +232,14 @@ export const content: Record<Locale, Content> = {
         },
       ],
       timing: { label: 'Einbauzeit', value: 'unter 1 Minute pro Laufmeter' },
+    },
+    intro: {
+      eyebrow: 'Was ist die FBZ?',
+      body:
+        'Die FBZ Fugenblechzentrierung ist ein patentangemeldetes Schaumstoff-Formteil, das Fugenbleche in der Arbeitsfuge zwischen Bodenplatte und aufgehender Wand einer WU-Konstruktion (wasserundurchlässiger Stahlbeton, sogenannte Weiße Wanne) automatisch mittig positioniert. Das Fugenblech gleitet in einen präzisen Mittelschlitz und zentriert sich selbst – Lageverschiebung, Abstandsfehler zur Bewehrung und falsche Einbindetiefe werden konstruktiv ausgeschlossen. Während des gesamten Betoniervorgangs hält die FBZ das Fugenblech sicher in Position. Der Einbau erfolgt manuell, ohne Spezialwerkzeug, in unter einer Minute pro Laufmeter. Das Produkt wurde von Dr.-Ing. Jörn Budde entwickelt – öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz – und wird von der BBA GmbH in Bad Saarow gefertigt. Patent angemeldet: DE 10 2025 121 129.9.',
+      factA: { k: 'Bauteil', v: 'Schaumstoff-Formteil mit Mittelschlitz' },
+      factB: { k: 'Anwendung', v: 'Arbeitsfuge Bodenplatte ↔ Wand, WU-Konstruktion' },
+      factC: { k: 'Einbau', v: '< 1 min / lfm · werkzeugfrei' },
     },
     video: {
       posterAlt: 'FBZ Fugenblechzentrierung im Einbau – Produktlabel mit Patentnummer auf dem Bewehrungskorb der Arbeitsfuge.',
@@ -327,10 +346,11 @@ export const content: Record<Locale, Content> = {
       eyebrow: '06 — Hersteller',
       headline: 'Entwickelt aus langjähriger Sachverständigenpraxis.',
       body:
-        'Die FBZ wurde von Dr. Ing. Jörn Budde entwickelt – Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus langjähriger Begutachtungspraxis am Boden-Wand-Anschluss entstand ein Formteil, das die Zentrierung des Fugenblechs standardisiert und eine häufige Ausführungsfehlerquelle reduziert.',
+        'Die FBZ wurde von Dr.-Ing. Jörn Budde entwickelt — öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus langjähriger Begutachtungspraxis am Boden-Wand-Anschluss entstand ein Formteil, das die Zentrierung des Fugenblechs standardisiert und eine häufige Ausführungsfehlerquelle reduziert. Die FBZ wird von der BBA GmbH in Bad Saarow gefertigt und in der gesamten DACH-Region geliefert.',
       facts: [
         { k: 'Hersteller', v: 'BBA GmbH' },
-        { k: 'Entwickler', v: 'Dr. Ing. Jörn Budde' },
+        { k: 'Entwickler', v: 'Dr.-Ing. Jörn Budde' },
+        { k: 'Qualifikation', v: 'Öffentlich bestellt · vereidigt' },
         { k: 'Fachgebiet', v: 'Gebäudeabdichtung · Bautenschutz' },
         { k: 'Patent angemeldet', v: 'DE 10 2025 121 129.9' },
         { k: 'Sitz', v: 'Bad Saarow, Deutschland' },
@@ -386,6 +406,7 @@ export const content: Record<Locale, Content> = {
     },
     problem: {
       eyebrow: '01 — The problem',
+      question: 'Where do leaks in watertight concrete structures typically occur?',
       headline: 'Leaks almost always appear in the same place.',
       lead:
         'Expert practice shows that leaks in watertight concrete structures usually trace back to poorly designed or executed penetrations, openings, joints and connections — with the construction joint between base slab and wall being especially critical.',
@@ -393,24 +414,24 @@ export const content: Record<Locale, Content> = {
         eyebrow: 'The critical point',
         title: 'The construction joint between base slab and rising wall is the recurring weak point of every watertight concrete structure.',
         body: 'It arises by design in every watertight structure — exactly where water pressure, groundwater and moisture later meet the concrete. Errors when installing the waterstop translate directly into leakage.',
-        source: 'BVS Experts Association · position paper 04/2016',
+        source: 'Expert practice · DAfStb guideline on watertight concrete',
       },
       stats: [
         {
           value: '5',
           unit: 'error sources',
           label: 'at the waterstop combine at the base-to-wall joint: displacement, clearance, centering, embedment and coating damage.',
-          source: 'TÜV SÜD training material · DIBt/ETA · manufacturer documentation',
+          source: 'Expert practice · base-to-wall joint surveys',
         },
         {
           value: '5–6',
           unit: 'figure',
           label: 'Typical order of magnitude for retroactive remediation per case — plus loss of use, expert reports and potential legal disputes.',
-          source: 'DBZ case studies · waterproofing literature',
+          source: 'Expert practice · waterproofing literature',
         },
       ],
       errors: {
-        title: 'Five systematic sources of error during installation',
+        title: 'The 5 sources of error at the waterstop',
         intro:
           'These errors do not arise from lack of knowledge. They arise from time pressure, improvisation, and the absence of a reliable centering aid.',
         items: [
@@ -444,6 +465,7 @@ export const content: Record<Locale, Content> = {
     },
     solution: {
       eyebrow: '02 — The solution',
+      question: 'How is the waterstop installed with the FBZ?',
       headline: 'One element. Three steps. No special tools.',
       lead:
         'The FBZ is placed on the construction joint. The waterstop sheet slides into a precision slit and self-centers automatically. Concrete then encases the system and locks everything permanently in place.',
@@ -465,6 +487,14 @@ export const content: Record<Locale, Content> = {
         },
       ],
       timing: { label: 'Install time', value: 'under 1 minute per linear meter' },
+    },
+    intro: {
+      eyebrow: 'What is the FBZ?',
+      body:
+        'The FBZ waterstop centering element is a patent-pending moulded foam part that automatically positions waterstop sheets dead-center in the construction joint between base slab and rising wall of a watertight concrete structure (WU-Beton, also known as "Weiße Wanne"). The waterstop slides into a precision center slit and self-centers — displacement, insufficient rebar clearance and wrong embedment depth are eliminated by design. Throughout the entire pour, the FBZ holds the waterstop securely in place. Installation is manual, requires no special tools, and takes under one minute per linear meter. The product was developed by Dr.-Ing. Jörn Budde — court-appointed and sworn expert for building waterproofing and structural protection — and is manufactured by BBA GmbH in Bad Saarow, Germany. Patent pending: DE 10 2025 121 129.9.',
+      factA: { k: 'Component', v: 'Moulded foam element with center slit' },
+      factB: { k: 'Application', v: 'Base-slab-to-wall joint, watertight concrete' },
+      factC: { k: 'Install', v: '< 1 min / lm · tool-free' },
     },
     video: {
       posterAlt: 'FBZ waterstop centering element on site – product label with patent number visible on the rebar cage of the construction joint.',
@@ -571,10 +601,11 @@ export const content: Record<Locale, Content> = {
       eyebrow: '06 — Manufacturer',
       headline: 'Engineered from long-standing expert practice.',
       body:
-        'The FBZ was developed by Dr. Ing. Jörn Budde — expert for building waterproofing and structural protection. Emerging from many years of expert practice at the base-to-wall joint, the element standardises waterstop centering and reduces a common source of installation error.',
+        'The FBZ was developed by Dr.-Ing. Jörn Budde — court-appointed and sworn expert for building waterproofing and structural protection. Emerging from many years of expert practice at the base-to-wall joint, the element standardises waterstop centering and reduces a common source of installation error. The FBZ is manufactured by BBA GmbH in Bad Saarow, Germany, and delivered across the DACH region.',
       facts: [
         { k: 'Manufacturer', v: 'BBA GmbH' },
-        { k: 'Developer', v: 'Dr. Ing. Jörn Budde' },
+        { k: 'Developer', v: 'Dr.-Ing. Jörn Budde' },
+        { k: 'Qualification', v: 'Court-appointed · sworn' },
         { k: 'Field', v: 'Waterproofing · Structural protection' },
         { k: 'Patent pending', v: 'DE 10 2025 121 129.9' },
         { k: 'Location', v: 'Bad Saarow, Germany' },

@@ -48,51 +48,59 @@ const mailHref = `mailto:${email}?subject=${subject}&body=${body}`;
 
     <div class="col-span-12 lg:col-span-4 lg:col-start-9 mt-16 lg:mt-0 lg:pt-2">
       <div class="border-t border-ink pt-6">
-        <dl class="space-y-6">
-          <div>
-            <dt class="label text-[0.6875rem]">{locale === 'de' ? 'Ansprechpartner' : 'Contacts'}</dt>
-            <dd class="mt-1.5 space-y-3">
-              {contacts.map((c) => (
-                <div>
-                  <p class="font-display text-base font-medium leading-snug">{c.name}</p>
-                  <p class="text-ink-mute text-[0.8125rem] leading-snug">{c.role}</p>
-                </div>
-              ))}
-            </dd>
-          </div>
-          <div>
-            <dt class="label text-[0.6875rem]">{t.mailLabel}</dt>
-            <dd class="mt-1.5">
-              <a href={`mailto:${email}`} class="font-display text-base font-medium hover:text-blue transition-colors">{email}</a>
-            </dd>
-          </div>
-          <div>
-            <dt class="label text-[0.6875rem]">{t.phoneLabel}</dt>
-            <dd class="mt-1.5 space-y-2">
-              <div class="flex items-baseline gap-3">
-                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro 1' : 'Office 1'}</span>
-                <a href={phoneOfficeHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOffice}</a>
-              </div>
-              <div class="flex items-baseline gap-3">
-                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro 2' : 'Office 2'}</span>
-                <a href={phoneOfficeAltHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOfficeAlt}</a>
-              </div>
-              <div class="flex items-baseline gap-3">
-                <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Mobil' : 'Mobile'}</span>
-                <a href={phoneMobileHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneMobile}</a>
-              </div>
-            </dd>
-          </div>
-          <div>
-            <dt class="label text-[0.6875rem]">{locale === 'de' ? 'Adresse' : 'Address'}</dt>
-            <dd class="mt-1.5 font-display text-base font-medium leading-snug">
-              BBA GmbH<br />
-              Silberberger Chaussee 14<br />
-              15526 Bad Saarow
-            </dd>
-          </div>
+        <dl class="cta-dl">
+          <dt class="label text-[0.6875rem]">{locale === 'de' ? 'Ansprechpartner' : 'Contacts'}</dt>
+          <dd class="cta-dl__dd">
+            {contacts.map((c) => (
+              <p class="font-display text-base font-medium leading-snug">{c.name}</p>
+              <p class="text-ink-mute text-[0.8125rem] leading-snug mb-3">{c.role}</p>
+            ))}
+          </dd>
+
+          <dt class="label text-[0.6875rem]">{t.mailLabel}</dt>
+          <dd class="cta-dl__dd">
+            <a href={`mailto:${email}`} class="font-display text-base font-medium hover:text-blue transition-colors">{email}</a>
+          </dd>
+
+          <dt class="label text-[0.6875rem]">{t.phoneLabel}</dt>
+          <dd class="cta-dl__dd space-y-2">
+            <span class="block flex items-baseline gap-3">
+              <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro 1' : 'Office 1'}</span>
+              <a href={phoneOfficeHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOffice}</a>
+            </span>
+            <span class="block flex items-baseline gap-3">
+              <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Büro 2' : 'Office 2'}</span>
+              <a href={phoneOfficeAltHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneOfficeAlt}</a>
+            </span>
+            <span class="block flex items-baseline gap-3">
+              <span class="font-mono text-[0.6875rem] uppercase tracking-wider text-ink-mute w-14 shrink-0">{locale === 'de' ? 'Mobil' : 'Mobile'}</span>
+              <a href={phoneMobileHref} class="font-display text-base font-medium hover:text-blue transition-colors">{phoneMobile}</a>
+            </span>
+          </dd>
+
+          <dt class="label text-[0.6875rem]">{locale === 'de' ? 'Adresse' : 'Address'}</dt>
+          <dd class="cta-dl__dd font-display text-base font-medium leading-snug">
+            BBA GmbH<br />
+            Silberberger Chaussee 14<br />
+            15526 Bad Saarow
+          </dd>
         </dl>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-dl {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.375rem;
+  }
+  .cta-dl__dd {
+    margin-top: 0.375rem;
+    margin-bottom: 1.5rem;
+  }
+  .cta-dl__dd:last-of-type {
+    margin-bottom: 0;
+  }
+</style>

@@ -39,7 +39,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rel/agent-skills\"; type=\"application/json\", <https://www.fb-zent.com/>; rel=\"canonical\", </en/>; rel=\"alternate\"; hreflang=\"en\""
+          "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rel/agent-skills\"; type=\"application/json\", <https://www.fb-zent.com/>; rel=\"canonical\", <https://www.fb-zent.com/>; rel=\"alternate\"; hreflang=\"de\", <https://www.fb-zent.com/en/>; rel=\"alternate\"; hreflang=\"en\", <https://www.fb-zent.com/>; rel=\"alternate\"; hreflang=\"x-default\""
         }
       ]
     },
@@ -48,7 +48,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </en/index.md>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rel/agent-skills\"; type=\"application/json\", <https://www.fb-zent.com/en/>; rel=\"canonical\", </>; rel=\"alternate\"; hreflang=\"de\""
+          "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </en/index.md>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rel/agent-skills\"; type=\"application/json\", <https://www.fb-zent.com/en/>; rel=\"canonical\", <https://www.fb-zent.com/>; rel=\"alternate\"; hreflang=\"de\", <https://www.fb-zent.com/en/>; rel=\"alternate\"; hreflang=\"en\", <https://www.fb-zent.com/>; rel=\"alternate\"; hreflang=\"x-default\""
         }
       ]
     },

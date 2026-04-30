@@ -7,6 +7,7 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = content[locale].intro;
+const facts = [t.factA, t.factB, t.factC];
 ---
 
 <section
@@ -26,16 +27,37 @@ const t = content[locale].intro;
         {t.body}
       </p>
 
-      <dl class="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 border-t border-ink-line pt-6">
-        {[t.factA, t.factB, t.factC].map((fact) => (
-          <div class="flex flex-col gap-1.5">
+      <dl class="intro-dl mt-10 md:mt-12 border-t border-ink-line pt-6">
+        {facts.map((fact) => (
+          <Fragment>
             <dt class="label text-[0.6875rem]">{fact.k}</dt>
-            <dd class="font-display text-base md:text-lg font-medium text-ink leading-snug tracking-tight">
-              {fact.v}
-            </dd>
-          </div>
+            <dd class="font-display text-base md:text-lg font-medium text-ink leading-snug tracking-tight">{fact.v}</dd>
+          </Fragment>
         ))}
       </dl>
     </div>
   </div>
 </section>
+
+<style>
+  .intro-dl {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.375rem;
+  }
+  .intro-dl dd + dt {
+    margin-top: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .intro-dl {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: auto auto;
+      grid-auto-flow: column;
+      column-gap: 1.5rem;
+      row-gap: 0.375rem;
+    }
+    .intro-dl dd + dt {
+      margin-top: 0;
+    }
+  }
+</style>

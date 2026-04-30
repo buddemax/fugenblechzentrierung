@@ -19,20 +19,78 @@ const t = content[locale].benefits;
     </div>
 
     <!-- Editorial list, not card grid -->
-    <dl class="col-span-12 mt-16 md:mt-24 divide-y divide-ink-line border-t border-b border-ink-line">
+    <dl class="benefits-dl col-span-12 mt-16 md:mt-24 border-t border-b border-ink-line">
       {t.items.map((item, i) => (
-        <div class="grid grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 group">
-          <div class="col-span-2 md:col-span-1 font-mono text-[0.75rem] tracking-wider text-ink-mute pt-1">
-            0{i + 1}
-          </div>
-          <dt class="col-span-10 md:col-span-5 font-display text-2xl md:text-[2rem] font-semibold leading-[1.05] tracking-tight">
-            {item.title}
+        <Fragment>
+          <dt class="benefits-dt">
+            <span class="font-mono text-[0.75rem] tracking-wider text-ink-mute pt-1 benefits-num">{`0${i + 1}`}</span>
+            <span class="benefits-title font-display text-2xl md:text-[2rem] font-semibold leading-[1.05] tracking-tight">
+              {item.title}
+            </span>
           </dt>
-          <dd class="col-span-12 md:col-span-6 text-ink-soft text-[1.0625rem] leading-relaxed max-w-[50ch]">
+          <dd class="benefits-dd text-ink-soft text-[1.0625rem] leading-relaxed">
             {item.body}
           </dd>
-        </div>
+        </Fragment>
       ))}
     </dl>
   </div>
 </section>
+
+<style>
+  .benefits-dl {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .benefits-dl {
+      column-gap: 2rem;
+    }
+  }
+  .benefits-dt {
+    grid-column: span 12 / span 12;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+    padding-top: 2rem;
+  }
+  .benefits-dd {
+    grid-column: span 12 / span 12;
+    padding-bottom: 2rem;
+    padding-top: 0.75rem;
+    border-bottom: 1px solid var(--color-ink-line);
+    max-width: 50ch;
+  }
+  .benefits-dt {
+    border-top: 1px solid var(--color-ink-line);
+  }
+  .benefits-dt:first-of-type {
+    border-top: 0;
+  }
+  @media (min-width: 768px) {
+    .benefits-dt {
+      grid-column: span 6 / span 6;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-top: 0;
+      border-bottom: 1px solid var(--color-ink-line);
+    }
+    .benefits-dt:first-of-type {
+      border-top: 0;
+    }
+    .benefits-dd {
+      grid-column: span 6 / span 6;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--color-ink-line);
+    }
+  }
+  .benefits-num {
+    grid-column: 1;
+    align-self: start;
+  }
+  .benefits-title {
+    grid-column: 2;
+  }
+</style>

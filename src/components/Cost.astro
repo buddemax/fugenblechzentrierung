@@ -99,17 +99,17 @@ const k = keyStat[locale];
           </div>
           <span class="font-mono text-[0.75rem] tracking-wider text-ink-mute shrink-0">A</span>
         </header>
-        <dl class="mt-6 space-y-5">
+        <dl class="cost-rows mt-6">
           {t.rows.map((row, i) => (
-            <div class="grid grid-cols-12 gap-3 pb-5 border-b last:border-b-0 last:pb-0" style="border-color: var(--color-paper-warm-line);">
-              <dt class="col-span-12 md:col-span-5 flex items-baseline gap-2">
+            <Fragment>
+              <dt class="cost-rows__dt flex items-baseline gap-2" style="border-color: var(--color-paper-warm-line);">
                 <span class="font-mono text-[0.6875rem] text-ink-mute tracking-wider">0{i + 1}</span>
                 <span class="label text-[0.6875rem] text-ink-soft">{row.label}</span>
               </dt>
-              <dd class="col-span-12 md:col-span-7 font-display text-[0.9375rem] md:text-base font-medium leading-snug text-ink">
+              <dd class="cost-rows__dd font-display text-[0.9375rem] md:text-base font-medium leading-snug text-ink" style="border-color: var(--color-paper-warm-line);">
                 {row.without}
               </dd>
-            </div>
+            </Fragment>
           ))}
         </dl>
       </article>
@@ -125,17 +125,17 @@ const k = keyStat[locale];
           </div>
           <span class="font-mono text-[0.75rem] tracking-wider text-ink-mute shrink-0">B</span>
         </header>
-        <dl class="mt-6 space-y-5">
+        <dl class="cost-rows mt-6">
           {t.rows.map((row, i) => (
-            <div class="grid grid-cols-12 gap-3 pb-5 border-b border-ink-line last:border-b-0 last:pb-0">
-              <dt class="col-span-12 md:col-span-5 flex items-baseline gap-2">
+            <Fragment>
+              <dt class="cost-rows__dt flex items-baseline gap-2 border-ink-line">
                 <span class="font-mono text-[0.6875rem] text-blue tracking-wider">0{i + 1}</span>
                 <span class="label text-[0.6875rem] text-ink-soft">{row.label}</span>
               </dt>
-              <dd class="col-span-12 md:col-span-7 font-display text-[0.9375rem] md:text-base font-medium leading-snug text-ink">
+              <dd class="cost-rows__dd font-display text-[0.9375rem] md:text-base font-medium leading-snug text-ink border-ink-line">
                 {row.with}
               </dd>
-            </div>
+            </Fragment>
           ))}
         </dl>
       </article>
@@ -169,3 +169,49 @@ const k = keyStat[locale];
     </ol>
   </div>
 </section>
+
+<style>
+  .cost-rows {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0;
+  }
+  .cost-rows__dt {
+    grid-column: 1 / -1;
+    padding-bottom: 0.5rem;
+  }
+  .cost-rows__dd {
+    grid-column: 1 / -1;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid;
+    margin-bottom: 1.25rem;
+  }
+  .cost-rows__dd:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .cost-rows {
+      grid-template-columns: 5fr 7fr;
+      column-gap: 0.75rem;
+    }
+    .cost-rows__dt {
+      grid-column: 1;
+      padding-top: 0;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid;
+      margin-bottom: 1.25rem;
+    }
+    .cost-rows__dd {
+      grid-column: 2;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .cost-rows__dt:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+</style>

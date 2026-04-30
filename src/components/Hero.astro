@@ -70,12 +70,12 @@ const t = content[locale];
       <div class="flex items-start justify-between gap-6 mb-5">
         <span class="label">{t.hero.specLabel}</span>
       </div>
-      <dl class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6">
+      <dl class="hero-spec-dl">
         {t.hero.specItems.map((item) => (
-          <div class="flex flex-col gap-1">
+          <Fragment>
             <dt class="label text-[0.6875rem]">{item.k}</dt>
             <dd class="font-display text-lg md:text-xl font-medium text-ink tracking-tight">{item.v}</dd>
-          </div>
+          </Fragment>
         ))}
       </dl>
     </div>
@@ -111,6 +111,26 @@ const t = content[locale];
         min(0px, (1440px - 100vw) / 2)
         - clamp(1.25rem, 4vw, 3rem)
       );
+    }
+  }
+
+  .hero-spec-dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    column-gap: 1.5rem;
+    row-gap: 0.25rem;
+  }
+  .hero-spec-dl dd {
+    margin-bottom: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .hero-spec-dl {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .hero-spec-dl dd {
+      margin-bottom: 0;
     }
   }
 </style>

@@ -41,14 +41,14 @@ const t = content[locale].detail;
       </p>
 
       <!-- Annotation list (technical spec table styling) -->
-      <dl class="mt-12 md:mt-16 divide-y divide-ink-line border-t border-ink-line">
+      <dl class="detail-dl mt-12 md:mt-16 border-t border-ink-line">
         {t.annotations.map((row) => (
-          <div class="grid grid-cols-12 gap-4 py-4">
-            <dt class="col-span-5 label text-[0.6875rem] pt-1">{row.k}</dt>
-            <dd class="col-span-7 font-display text-base md:text-lg font-medium text-ink leading-tight tracking-tight">
+          <Fragment>
+            <dt class="label text-[0.6875rem] py-4 pt-5 pr-4 border-b border-ink-line">{row.k}</dt>
+            <dd class="font-display text-base md:text-lg font-medium text-ink leading-tight tracking-tight py-4 border-b border-ink-line">
               {row.v}
             </dd>
-          </div>
+          </Fragment>
         ))}
       </dl>
 
@@ -107,3 +107,11 @@ const t = content[locale].detail;
     </div>
   </div>
 </section>
+
+<style>
+  .detail-dl {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    column-gap: 1rem;
+  }
+</style>

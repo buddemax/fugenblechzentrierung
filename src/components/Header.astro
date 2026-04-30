@@ -41,7 +41,7 @@ const otherHref = otherLocale === 'de' ? '/' : '/en/';
     {minimal && <div></div>}
 
     <div class="flex items-center gap-5">
-      <a href={otherHref} class="label hover:text-blue transition-colors" aria-label={`Switch to ${otherLocale.toUpperCase()}`}>
+      <a href={otherHref} class="label hover:text-blue transition-colors" aria-label={`${locale.toUpperCase()} / ${otherLocale.toUpperCase()} — Switch to ${otherLocale.toUpperCase()}`}>
         <span class="text-ink">{locale.toUpperCase()}</span>
         <span class="mx-1.5 text-ink-line">/</span>
         <span>{otherLocale.toUpperCase()}</span>

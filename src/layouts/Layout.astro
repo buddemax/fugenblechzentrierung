@@ -25,6 +25,34 @@ const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
 const ogImage = 'https://fugenblechzentrierung.de/og-image.png';
 
+const founderNode = {
+  '@type': 'Person',
+  '@id': 'https://fugenblechzentrierung.de/#founder',
+  name: 'Dr.-Ing. Jörn Budde',
+  honorificPrefix: 'Dr.-Ing.',
+  givenName: 'Jörn',
+  familyName: 'Budde',
+  jobTitle: locale === 'de'
+    ? 'Öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz'
+    : 'Court-appointed and sworn expert for building waterproofing and structural protection',
+  worksFor: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  knowsAbout: locale === 'de'
+    ? ['Gebäudeabdichtung', 'Bautenschutz', 'WU-Konstruktionen', 'Weiße Wanne', 'Fugenabdichtung', 'Arbeitsfugen', 'Bauschadensbegutachtung']
+    : ['Building waterproofing', 'Structural protection', 'Watertight concrete construction', 'Construction-joint sealing', 'Building defect expertise'],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: locale === 'de' ? 'Promotion (Dr.-Ing.)' : 'Doctorate (Dr.-Ing.)',
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: locale === 'de'
+        ? 'Öffentlich bestellter und vereidigter Sachverständiger'
+        : 'Court-appointed and sworn expert',
+    },
+  ],
+};
+
 const orgNode = {
   '@type': 'Organization',
   '@id': 'https://fugenblechzentrierung.de/#org',
@@ -41,11 +69,7 @@ const orgNode = {
     addressRegion: 'BB',
     addressCountry: 'DE',
   },
-  founder: {
-    '@type': 'Person',
-    name: 'Dr. Ing. Jörn Budde',
-    jobTitle: locale === 'de' ? 'Sachverständiger für Gebäudeabdichtung und Bautenschutz' : 'Expert for building waterproofing and structural protection',
-  },
+  founder: { '@id': 'https://fugenblechzentrierung.de/#founder' },
   vatID: 'DE188194413',
   taxID: 'HRB 17338',
   areaServed: [
@@ -94,8 +118,6 @@ const productNode = {
   offers: {
     '@type': 'Offer',
     url: canonical + '#contact',
-    priceCurrency: 'EUR',
-    price: '0',
     priceSpecification: {
       '@type': 'PriceSpecification',
       priceCurrency: 'EUR',
@@ -114,8 +136,47 @@ const websiteNode = {
   '@id': 'https://fugenblechzentrierung.de/#website',
   url: 'https://fugenblechzentrierung.de/',
   name: 'FBZ Fugenblechzentrierung',
+  description: locale === 'de'
+    ? 'Patentangemeldete Schaumstoff-Zentrierhilfe, die Fugenbleche in der Arbeitsfuge von WU-Konstruktionen millimetergenau positioniert und während des Betoniervorgangs sicher in Lage hält.'
+    : 'Patent-pending foam centering element that positions waterstop sheets dead-center in the construction joint of watertight concrete structures and holds them securely throughout the entire pour.',
   publisher: { '@id': 'https://fugenblechzentrierung.de/#org' },
   inLanguage: ['de-DE', 'en-US'],
+};
+
+const videoNode = {
+  '@type': 'VideoObject',
+  '@id': 'https://fugenblechzentrierung.de/#video-fbz-de',
+  name: 'FBZ Fugenblechzentrierung – Einbau auf der Baustelle',
+  description: 'Produktvideo zur Fugenblechzentrierung (FBZ): Einbau auf der Arbeitsfuge zwischen Bodenplatte und aufgehender Wand in einer WU-Konstruktion. Drei Schritte – Positionieren, Einstecken, Betonieren – in unter einer Minute pro Laufmeter.',
+  thumbnailUrl: [
+    'https://fugenblechzentrierung.de/video-poster-r2-800.webp',
+    'https://fugenblechzentrierung.de/video-poster-r2-1280.webp',
+    'https://fugenblechzentrierung.de/video-poster-r2-1600.webp',
+  ],
+  contentUrl: 'https://oatucv4cwba4mznn.public.blob.vercel-storage.com/FBZ_2026_deutsch_720p_h264.mp4',
+  uploadDate: '2026-04-29',
+  duration: 'PT2M30S',
+  inLanguage: 'de',
+  isFamilyFriendly: true,
+  publisher: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  about: { '@id': 'https://fugenblechzentrierung.de/#product' },
+  hasPart: [
+    {
+      '@type': 'Clip',
+      name: 'Schritt 1 – Positionieren',
+      startOffset: 0,
+    },
+    {
+      '@type': 'Clip',
+      name: 'Schritt 2 – Einstecken',
+      startOffset: 50,
+    },
+    {
+      '@type': 'Clip',
+      name: 'Schritt 3 – Betonieren',
+      startOffset: 100,
+    },
+  ],
 };
 
 const faqDe = {
@@ -228,75 +289,13 @@ const faqEn = {
   ],
 };
 
-const howToDe = {
-  '@type': 'HowTo',
-  '@id': 'https://fugenblechzentrierung.de/#howto',
-  name: 'Fugenblech mit der FBZ einbauen',
-  description: 'In drei Schritten zum exakt zentrierten Fugenblech in der Arbeitsfuge einer WU-Konstruktion.',
-  totalTime: 'PT1M',
-  tool: [{ '@type': 'HowToTool', name: 'Keines erforderlich' }],
-  supply: [
-    { '@type': 'HowToSupply', name: 'FBZ Fugenblechzentrierung' },
-    { '@type': 'HowToSupply', name: 'Fugenblech' },
-  ],
-  step: [
-    {
-      '@type': 'HowToStep',
-      position: 1,
-      name: 'Positionieren',
-      text: 'FBZ auf der Arbeitsfuge zwischen Bodenplatte und Wand aufsetzen. Keine Vorarbeit, keine Messung erforderlich.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 2,
-      name: 'Einstecken',
-      text: 'Fugenblech in den präzisen Schlitz der FBZ einführen. Das Blech zentriert sich automatisch millimetergenau mittig.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 3,
-      name: 'Betonieren',
-      text: 'Beton einbringen. Die FBZ hält das Fugenblech während des gesamten Betoniervorgangs sicher in Position.',
-    },
-  ],
-};
-
-const howToEn = {
-  '@type': 'HowTo',
-  '@id': 'https://fugenblechzentrierung.de/#howto',
-  name: 'Install a waterstop with the FBZ',
-  description: 'Three steps to a perfectly centered waterstop in the construction joint of a watertight concrete structure.',
-  totalTime: 'PT1M',
-  tool: [{ '@type': 'HowToTool', name: 'None required' }],
-  supply: [
-    { '@type': 'HowToSupply', name: 'FBZ waterstop centering element' },
-    { '@type': 'HowToSupply', name: 'Waterstop sheet' },
-  ],
-  step: [
-    {
-      '@type': 'HowToStep',
-      position: 1,
-      name: 'Place',
-      text: 'Position the FBZ on the construction joint between base slab and wall. No prep work, no measurement needed.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 2,
-      name: 'Insert',
-      text: 'Slide the waterstop sheet into the precision slit of the FBZ. The sheet self-centers automatically.',
-    },
-    {
-      '@type': 'HowToStep',
-      position: 3,
-      name: 'Pour',
-      text: 'Place the concrete. The FBZ holds the waterstop securely throughout the entire pour.',
-    },
-  ],
-};
+const homeGraph = locale === 'de'
+  ? [founderNode, orgNode, websiteNode, productNode, videoNode, faqDe]
+  : [founderNode, orgNode, websiteNode, productNode, faqEn];
 
 const graph = pageType === 'home'
-  ? [orgNode, websiteNode, productNode, locale === 'de' ? faqDe : faqEn, locale === 'de' ? howToDe : howToEn]
-  : [orgNode, websiteNode];
+  ? homeGraph
+  : [founderNode, orgNode, websiteNode];
 
 const jsonLd = {
   '@context': 'https://schema.org',

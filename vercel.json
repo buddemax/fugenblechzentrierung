@@ -35,6 +35,46 @@
       ]
     },
     {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rel/agent-skills\"; type=\"application/json\", <https://fugenblechzentrierung.de/>; rel=\"canonical\", </en/>; rel=\"alternate\"; hreflang=\"en\""
+        }
+      ]
+    },
+    {
+      "source": "/en/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </en/index.md>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rel/agent-skills\"; type=\"application/json\", <https://fugenblechzentrierung.de/en/>; rel=\"canonical\", </>; rel=\"alternate\"; hreflang=\"de\""
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
       "source": "/fonts/(.*)",
       "headers": [
         {

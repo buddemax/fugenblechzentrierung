@@ -14,7 +14,7 @@ export default {
           'line-strong': 'oklch(78% 0.008 230)',
         },
         blue: {
-          DEFAULT: '#1182C2',
+          DEFAULT: '#0a5e8a',
           soft: 'oklch(62% 0.13 238)',
           deep: 'oklch(42% 0.13 238)',
           bg: 'oklch(96% 0.025 238)',

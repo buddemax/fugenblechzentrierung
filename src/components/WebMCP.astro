@@ -1,0 +1,158 @@
+---
+import type { Locale } from '~/i18n/content';
+import { content } from '~/i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = content[locale];
+
+// Serialise the page-specific data the tools need so the script stays
+// pure data + small functions. JSON.stringify is safe for these objects.
+const dataPayload = {
+  locale,
+  product: {
+    name: 'FBZ Fugenblechzentrierung',
+    description: t.meta.description,
+    patent: t.hero.patentId,
+    manufacturer: 'BBA GmbH',
+    developer: 'Dr.-Ing. Jörn Budde',
+    spec: t.hero.specItems,
+    summary: t.intro.body,
+  },
+  contact: {
+    company: 'BBA GmbH',
+    address: 'Silberberger Chaussee 14, 15526 Bad Saarow, Deutschland',
+    email: 'info@bba-badsaarow.de',
+    phoneSales: '+49 174 4935860',
+    phoneOffice: '+49 33631 58374',
+  },
+  installation: {
+    totalTime: t.solution.timing.value,
+    steps: t.solution.steps,
+    toolsRequired: 'none',
+  },
+  faq: t.problem.errors.items.map((item) => ({
+    error: item.title,
+    description: item.body,
+  })),
+  quoteSubject: t.cta.subject,
+  videoUrl: 'https://oatucv4cwba4mznn.public.blob.vercel-storage.com/FBZ_2026_deutsch_720p_h264.mp4',
+};
+---
+
+<script type="application/json" id="webmcp-data" set:html={JSON.stringify(dataPayload)} is:inline></script>
+
+<script is:inline>
+  (function () {
+    if (typeof navigator === 'undefined' || !('modelContext' in navigator)) {
+      return;
+    }
+    const dataEl = document.getElementById('webmcp-data');
+    if (!dataEl) return;
+    let data;
+    try {
+      data = JSON.parse(dataEl.textContent || '{}');
+    } catch (_e) {
+      return;
+    }
+
+    const tools = [
+      {
+        name: 'getProductSummary',
+        description:
+          'Return a concise summary of the FBZ Fugenblechzentrierung — a patent-pending foam centering element for waterstop sheets in watertight concrete construction joints. Includes patent number, manufacturer, developer credentials and key specifications.',
+        inputSchema: { type: 'object', properties: {} },
+        execute: () => ({
+          name: data.product.name,
+          patent: data.product.patent,
+          manufacturer: data.product.manufacturer,
+          developer: data.product.developer,
+          summary: data.product.summary,
+          specifications: data.product.spec,
+          locale: data.locale,
+        }),
+      },
+      {
+        name: 'getContactInfo',
+        description:
+          'Return contact information (NAP) for the FBZ manufacturer BBA GmbH. Use when the user asks how to reach the company, where it is located, or who to email for a quote.',
+        inputSchema: { type: 'object', properties: {} },
+        execute: () => data.contact,
+      },
+      {
+        name: 'getInstallationSteps',
+        description:
+          'Return the 3-step installation process for the FBZ. Each step has a title and a short description. Total install time is under one minute per linear meter.',
+        inputSchema: { type: 'object', properties: {} },
+        execute: () => ({
+          totalTime: data.installation.totalTime,
+          toolsRequired: data.installation.toolsRequired,
+          steps: data.installation.steps,
+        }),
+      },
+      {
+        name: 'getCommonInstallationErrors',
+        description:
+          'Return the five systematic error sources at conventional waterstop installation that the FBZ is designed to prevent.',
+        inputSchema: { type: 'object', properties: {} },
+        execute: () => data.faq,
+      },
+      {
+        name: 'requestQuote',
+        description:
+          'Open the user\'s email client with a pre-drafted quote request to the FBZ sales contact. Optional fields: project name, required linear meters, target delivery date, country (DE/AT/CH).',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            project: { type: 'string', description: 'Project name or identifier' },
+            linearMeters: { type: 'number', description: 'Required linear meters of FBZ' },
+            deliveryDate: { type: 'string', description: 'Target delivery date (ISO 8601 YYYY-MM-DD)' },
+            country: { type: 'string', enum: ['DE', 'AT', 'CH'], description: 'Project country' },
+            notes: { type: 'string', description: 'Additional notes' },
+          },
+        },
+        execute: (args) => {
+          const a = args || {};
+          const lines = [];
+          if (a.project) lines.push('Projekt: ' + a.project);
+          if (a.linearMeters) lines.push('Bedarf: ' + a.linearMeters + ' lfm');
+          if (a.deliveryDate) lines.push('Liefertermin: ' + a.deliveryDate);
+          if (a.country) lines.push('Land: ' + a.country);
+          if (a.notes) lines.push('Anmerkungen: ' + a.notes);
+          const body = lines.length
+            ? lines.join('\n')
+            : 'Bitte um Angebot für die FBZ Fugenblechzentrierung.';
+          const subject = encodeURIComponent(data.quoteSubject);
+          const bodyEnc = encodeURIComponent(body);
+          const href = 'mailto:' + data.contact.email + '?subject=' + subject + '&body=' + bodyEnc;
+          window.location.href = href;
+          return { status: 'opened', recipient: data.contact.email };
+        },
+      },
+      {
+        name: 'playInstallationVideo',
+        description:
+          'Scroll to and play the on-site installation video (2 min 30 s, German audio).',
+        inputSchema: { type: 'object', properties: {} },
+        execute: () => {
+          const stage = document.querySelector('[data-video-stage]');
+          if (!stage) return { status: 'video-not-found' };
+          stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const button = stage.querySelector('[data-video-play]');
+          if (button) {
+            setTimeout(() => button.click(), 600);
+          }
+          return { status: 'playing', url: data.videoUrl };
+        },
+      },
+    ];
+
+    try {
+      navigator.modelContext.provideContext({ tools: tools });
+    } catch (_e) {
+      // WebMCP API present but call failed — silently no-op.
+    }
+  })();
+</script>

@@ -2,6 +2,7 @@
 import '~/styles/global.css';
 import type { Locale } from '~/i18n/content';
 import { content } from '~/i18n/content';
+import WebMCP from '~/components/WebMCP.astro';
 
 interface Props {
   locale: Locale;
@@ -355,5 +356,6 @@ const jsonLd = {
       {locale === 'de' ? 'Zum Inhalt springen' : 'Skip to content'}
     </a>
     <slot />
+    {pageType === 'home' && <WebMCP locale={locale} />}
   </body>
 </html>

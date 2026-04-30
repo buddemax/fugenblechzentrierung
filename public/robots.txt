@@ -33,4 +33,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://fugenblechzentrierung.de/sitemap-index.xml
+Sitemap: https://www.fb-zent.com/sitemap-index.xml

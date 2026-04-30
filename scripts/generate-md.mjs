@@ -190,8 +190,8 @@ function renderMarkdown(t, locale) {
   lines.push(`*${t.footer.patent}*`);
   lines.push('');
   const canonical = locale === 'de'
-    ? 'https://fugenblechzentrierung.de/'
-    : 'https://fugenblechzentrierung.de/en/';
+    ? 'https://www.fb-zent.com/'
+    : 'https://www.fb-zent.com/en/';
   lines.push(`*Canonical HTML: <${canonical}>*`);
   lines.push('');
 
@@ -214,8 +214,8 @@ async function updateAgentSkillsDigests() {
   }
   const idx = JSON.parse(raw);
   for (const skill of idx.skills) {
-    const url = new URL(skill.url, 'https://fugenblechzentrierung.de/');
-    if (url.host !== 'fugenblechzentrierung.de') continue;
+    const url = new URL(skill.url, 'https://www.fb-zent.com/');
+    if (url.host !== 'www.fb-zent.com') continue;
     const local = join(DIST, decodeURIComponent(url.pathname));
     try {
       await stat(local);

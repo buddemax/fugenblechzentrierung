@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://fugenblechzentrierung.de',
+  site: 'https://www.fb-zent.com',
   integrations: [
     tailwind(),
     sitemap({

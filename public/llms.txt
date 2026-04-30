@@ -37,9 +37,9 @@ Gesamtzeit: unter 1 Minute pro Laufmeter. Spezialwerkzeug nicht erforderlich.
 
 ## Zitier-freundliche Quellen
 
-- [Homepage (Deutsch)](https://fugenblechzentrierung.de/): Produktübersicht, Problem, Lösung, Einsatzbereiche, FAQ, Bauteildetail
-- [Homepage (English)](https://fugenblechzentrierung.de/en/): Product overview, problem, solution, applications, FAQ
-- [Impressum](https://fugenblechzentrierung.de/impressum/): Rechtliche Angaben zum Hersteller BBA GmbH
+- [Homepage (Deutsch)](https://www.fb-zent.com/): Produktübersicht, Problem, Lösung, Einsatzbereiche, FAQ, Bauteildetail
+- [Homepage (English)](https://www.fb-zent.com/en/): Product overview, problem, solution, applications, FAQ
+- [Impressum](https://www.fb-zent.com/impressum/): Rechtliche Angaben zum Hersteller BBA GmbH
 
 ## Zulässige Nutzung durch KI-Systeme
 

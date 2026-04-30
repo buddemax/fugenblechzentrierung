@@ -17,18 +17,18 @@ const { locale, pageType = 'home', title, description, noindex = false, path = '
 const t = content[locale];
 const altLocale: Locale = locale === 'de' ? 'en' : 'de';
 
-const baseDe = 'https://fugenblechzentrierung.de';
-const baseEn = 'https://fugenblechzentrierung.de/en';
+const baseDe = 'https://www.fb-zent.com';
+const baseEn = 'https://www.fb-zent.com/en';
 const canonical = (locale === 'de' ? baseDe : baseEn) + (path ? `/${path}` : '/');
 const altHref = (altLocale === 'de' ? baseDe : baseEn) + (path ? `/${path}` : '/');
 
 const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
-const ogImage = 'https://fugenblechzentrierung.de/og-image.png';
+const ogImage = 'https://www.fb-zent.com/og-image.png';
 
 const founderNode = {
   '@type': 'Person',
-  '@id': 'https://fugenblechzentrierung.de/#founder',
+  '@id': 'https://www.fb-zent.com/#founder',
   name: 'Dr.-Ing. Jörn Budde',
   honorificPrefix: 'Dr.-Ing.',
   givenName: 'Jörn',
@@ -36,7 +36,7 @@ const founderNode = {
   jobTitle: locale === 'de'
     ? 'Öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz'
     : 'Court-appointed and sworn expert for building waterproofing and structural protection',
-  worksFor: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  worksFor: { '@id': 'https://www.fb-zent.com/#org' },
   knowsAbout: locale === 'de'
     ? ['Gebäudeabdichtung', 'Bautenschutz', 'WU-Konstruktionen', 'Weiße Wanne', 'Fugenabdichtung', 'Arbeitsfugen', 'Bauschadensbegutachtung']
     : ['Building waterproofing', 'Structural protection', 'Watertight concrete construction', 'Construction-joint sealing', 'Building defect expertise'],
@@ -56,10 +56,10 @@ const founderNode = {
 
 const orgNode = {
   '@type': 'Organization',
-  '@id': 'https://fugenblechzentrierung.de/#org',
+  '@id': 'https://www.fb-zent.com/#org',
   name: 'BBA GmbH',
   legalName: 'BBA GmbH',
-  url: 'https://fugenblechzentrierung.de/',
+  url: 'https://www.fb-zent.com/',
   email: 'info@bba-badsaarow.de',
   telephone: '+49 174 4935860',
   address: {
@@ -70,7 +70,7 @@ const orgNode = {
     addressRegion: 'BB',
     addressCountry: 'DE',
   },
-  founder: { '@id': 'https://fugenblechzentrierung.de/#founder' },
+  founder: { '@id': 'https://www.fb-zent.com/#founder' },
   vatID: 'DE188194413',
   taxID: 'HRB 17338',
   areaServed: [
@@ -99,15 +99,15 @@ const orgNode = {
 
 const productNode = {
   '@type': 'Product',
-  '@id': 'https://fugenblechzentrierung.de/#product',
+  '@id': 'https://www.fb-zent.com/#product',
   name: 'FBZ Fugenblechzentrierung',
   alternateName: locale === 'de' ? 'Fugenblech-Zentrierhilfe' : 'Waterstop Centering Element',
   description: t.meta.description,
-  image: ['https://fugenblechzentrierung.de/rendering-fbz-1200.png'],
+  image: ['https://www.fb-zent.com/rendering-fbz-1200.png'],
   sku: 'FBZ-001',
   mpn: 'FBZ-001',
-  brand: { '@id': 'https://fugenblechzentrierung.de/#org' },
-  manufacturer: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  brand: { '@id': 'https://www.fb-zent.com/#org' },
+  manufacturer: { '@id': 'https://www.fb-zent.com/#org' },
   category: 'Construction / Waterproofing / Concrete joint sealing',
   material: locale === 'de' ? 'Schaumstoff-Formteil' : 'Moulded foam element',
   additionalProperty: [
@@ -128,39 +128,39 @@ const productNode = {
     itemCondition: 'https://schema.org/NewCondition',
     businessFunction: 'https://schema.org/Sell',
     areaServed: ['DE', 'AT', 'CH'],
-    seller: { '@id': 'https://fugenblechzentrierung.de/#org' },
+    seller: { '@id': 'https://www.fb-zent.com/#org' },
   },
 };
 
 const websiteNode = {
   '@type': 'WebSite',
-  '@id': 'https://fugenblechzentrierung.de/#website',
-  url: 'https://fugenblechzentrierung.de/',
+  '@id': 'https://www.fb-zent.com/#website',
+  url: 'https://www.fb-zent.com/',
   name: 'FBZ Fugenblechzentrierung',
   description: locale === 'de'
     ? 'Patentangemeldete Schaumstoff-Zentrierhilfe, die Fugenbleche in der Arbeitsfuge von WU-Konstruktionen millimetergenau positioniert und während des Betoniervorgangs sicher in Lage hält.'
     : 'Patent-pending foam centering element that positions waterstop sheets dead-center in the construction joint of watertight concrete structures and holds them securely throughout the entire pour.',
-  publisher: { '@id': 'https://fugenblechzentrierung.de/#org' },
+  publisher: { '@id': 'https://www.fb-zent.com/#org' },
   inLanguage: ['de-DE', 'en-US'],
 };
 
 const videoNode = {
   '@type': 'VideoObject',
-  '@id': 'https://fugenblechzentrierung.de/#video-fbz-de',
+  '@id': 'https://www.fb-zent.com/#video-fbz-de',
   name: 'FBZ Fugenblechzentrierung – Einbau auf der Baustelle',
   description: 'Produktvideo zur Fugenblechzentrierung (FBZ): Einbau auf der Arbeitsfuge zwischen Bodenplatte und aufgehender Wand in einer WU-Konstruktion. Drei Schritte – Positionieren, Einstecken, Betonieren – in unter einer Minute pro Laufmeter.',
   thumbnailUrl: [
-    'https://fugenblechzentrierung.de/video-poster-r2-800.webp',
-    'https://fugenblechzentrierung.de/video-poster-r2-1280.webp',
-    'https://fugenblechzentrierung.de/video-poster-r2-1600.webp',
+    'https://www.fb-zent.com/video-poster-r2-800.webp',
+    'https://www.fb-zent.com/video-poster-r2-1280.webp',
+    'https://www.fb-zent.com/video-poster-r2-1600.webp',
   ],
   contentUrl: 'https://oatucv4cwba4mznn.public.blob.vercel-storage.com/FBZ_2026_deutsch_720p_h264.mp4',
   uploadDate: '2026-04-29',
   duration: 'PT2M30S',
   inLanguage: 'de',
   isFamilyFriendly: true,
-  publisher: { '@id': 'https://fugenblechzentrierung.de/#org' },
-  about: { '@id': 'https://fugenblechzentrierung.de/#product' },
+  publisher: { '@id': 'https://www.fb-zent.com/#org' },
+  about: { '@id': 'https://www.fb-zent.com/#product' },
   hasPart: [
     {
       '@type': 'Clip',
@@ -182,7 +182,7 @@ const videoNode = {
 
 const faqDe = {
   '@type': 'FAQPage',
-  '@id': 'https://fugenblechzentrierung.de/#faq',
+  '@id': 'https://www.fb-zent.com/#faq',
   mainEntity: [
     {
       '@type': 'Question',
@@ -237,7 +237,7 @@ const faqDe = {
 
 const faqEn = {
   '@type': 'FAQPage',
-  '@id': 'https://fugenblechzentrierung.de/#faq',
+  '@id': 'https://www.fb-zent.com/#faq',
   mainEntity: [
     {
       '@type': 'Question',
@@ -316,7 +316,7 @@ const jsonLd = {
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="alternate" hreflang={locale} href={canonical} />
     <link rel="alternate" hreflang={altLocale} href={altHref} />
-    <link rel="alternate" hreflang="x-default" href="https://fugenblechzentrierung.de/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.fb-zent.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FBZ Fugenblechzentrierung" />
     <meta property="og:url" content={canonical} />

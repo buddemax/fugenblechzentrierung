@@ -4,15 +4,15 @@
   "generatedAt": "2026-04-30T00:00:00Z",
   "publisher": {
     "name": "BBA GmbH",
-    "url": "https://fugenblechzentrierung.de/",
-    "@id": "https://fugenblechzentrierung.de/#org"
+    "url": "https://www.fb-zent.com/",
+    "@id": "https://www.fb-zent.com/#org"
   },
   "skills": [
     {
       "name": "view-product-context",
       "type": "context",
       "description": "Read a curated brand and product abstract for the FBZ Fugenblechzentrierung — patent-pending foam centering element for waterstop sheets in watertight concrete construction joints. Source intended for AI-system citation.",
-      "url": "https://fugenblechzentrierung.de/llms.txt",
+      "url": "https://www.fb-zent.com/llms.txt",
       "contentType": "text/plain",
       "language": ["de", "en"],
       "sha256": "e28827644155719f59f09e7ea22e4eec603f823401aeb9a5cfbb7c374c6e7d6a"
@@ -21,7 +21,7 @@
       "name": "view-product-page-markdown-de",
       "type": "context",
       "description": "Full landing page content (DE) as Markdown — Hero claim, problem framing, 3-step installation, benefits, cost cascade, applications, manufacturer credentials, contact. Use for citation, summarisation or grounded retrieval.",
-      "url": "https://fugenblechzentrierung.de/index.md",
+      "url": "https://www.fb-zent.com/index.md",
       "contentType": "text/markdown",
       "language": ["de"]
     },
@@ -29,7 +29,7 @@
       "name": "view-product-page-markdown-en",
       "type": "context",
       "description": "Full landing page content (EN) as Markdown.",
-      "url": "https://fugenblechzentrierung.de/en/index.md",
+      "url": "https://www.fb-zent.com/en/index.md",
       "contentType": "text/markdown",
       "language": ["en"]
     },
@@ -54,7 +54,7 @@
       "name": "view-product-rendering",
       "type": "media",
       "description": "View the 3D product rendering of the FBZ moulded foam centering element (precision center slit visible).",
-      "url": "https://fugenblechzentrierung.de/rendering-fbz.webp",
+      "url": "https://www.fb-zent.com/rendering-fbz.webp",
       "contentType": "image/webp",
       "language": ["de", "en"],
       "sha256": "42df8af5cc2bf9a9ebf5e2555cf1cae1d592d0dae1cad52d5c941cf41f54f6e0"
@@ -63,7 +63,7 @@
       "name": "read-faq",
       "type": "context",
       "description": "Structured FAQ as Schema.org FAQPage JSON-LD inside the homepage HTML. Six question/answer pairs in DE and EN covering definition, leak origins, install time, applications, remediation cost, and developer credentials.",
-      "url": "https://fugenblechzentrierung.de/#faq",
+      "url": "https://www.fb-zent.com/#faq",
       "contentType": "application/ld+json"
     }
   ]

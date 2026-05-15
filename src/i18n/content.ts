@@ -236,7 +236,7 @@ export const content: Record<Locale, Content> = {
     intro: {
       eyebrow: 'Was ist die FBZ?',
       body:
-        'Die FBZ Fugenblechzentrierung ist ein patentangemeldetes Schaumstoff-Formteil, das Fugenbleche in der Arbeitsfuge zwischen Bodenplatte und aufgehender Wand einer WU-Konstruktion (wasserundurchlässiger Stahlbeton, sogenannte Weiße Wanne) automatisch mittig positioniert. Das Fugenblech gleitet in einen präzisen Mittelschlitz und zentriert sich selbst – Lageverschiebung, Abstandsfehler zur Bewehrung und falsche Einbindetiefe werden konstruktiv ausgeschlossen. Während des gesamten Betoniervorgangs hält die FBZ das Fugenblech sicher in Position. Der Einbau erfolgt manuell, ohne Spezialwerkzeug, in unter einer Minute pro Laufmeter. Das Produkt wurde von Dr.-Ing. Jörn Budde entwickelt – öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz – und wird von der BBA GmbH in Bad Saarow gefertigt. Patent angemeldet: DE 10 2025 121 129.9.',
+        'Die FBZ Fugenblechzentrierung ist ein patentangemeldetes Schaumstoff-Formteil, das Fugenbleche in der Arbeitsfuge zwischen Bodenplatte und aufgehender Wand einer WU-Konstruktion (wasserundurchlässiger Stahlbeton, sogenannte Weiße Wanne) automatisch mittig positioniert. Das Fugenblech gleitet in einen präzisen Mittelschlitz und zentriert sich selbst – Lageverschiebung, Abstandsfehler zur Bewehrung und falsche Einbindetiefe werden konstruktiv ausgeschlossen. Während des gesamten Betoniervorgangs hält die FBZ das Fugenblech sicher in Position. Der Einbau erfolgt manuell, ohne Spezialwerkzeug, in unter einer Minute pro Laufmeter. Das Produkt wurde von Dr.-Ing. Jörn Budde entwickelt – TÜV-zertifizierter Sachverständiger für Gebäudeabdichtung und Bautenschutz – und wird von der BBA GmbH in Bad Saarow gefertigt. Patent angemeldet: DE 10 2025 121 129.9.',
       factA: { k: 'Bauteil', v: 'Schaumstoff-Formteil mit Mittelschlitz' },
       factB: { k: 'Anwendung', v: 'Arbeitsfuge Bodenplatte ↔ Wand, WU-Konstruktion' },
       factC: { k: 'Einbau', v: '< 1 min / lfm · werkzeugfrei' },
@@ -346,11 +346,11 @@ export const content: Record<Locale, Content> = {
       eyebrow: '06 — Hersteller',
       headline: 'Entwickelt aus langjähriger Sachverständigenpraxis.',
       body:
-        'Die FBZ wurde von Dr.-Ing. Jörn Budde entwickelt — öffentlich bestellter und vereidigter Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus langjähriger Begutachtungspraxis am Boden-Wand-Anschluss entstand ein Formteil, das die Zentrierung des Fugenblechs standardisiert und eine häufige Ausführungsfehlerquelle reduziert. Die FBZ wird von der BBA GmbH in Bad Saarow gefertigt und in der gesamten DACH-Region geliefert.',
+        'Die FBZ wurde von Dr.-Ing. Jörn Budde entwickelt — TÜV-zertifizierter Sachverständiger für Gebäudeabdichtung und Bautenschutz. Aus langjähriger Begutachtungspraxis am Boden-Wand-Anschluss entstand ein Formteil, das die Zentrierung des Fugenblechs standardisiert und eine häufige Ausführungsfehlerquelle reduziert. Die FBZ wird von der BBA GmbH in Bad Saarow gefertigt und in der gesamten DACH-Region geliefert.',
       facts: [
         { k: 'Hersteller', v: 'BBA GmbH' },
         { k: 'Entwickler', v: 'Dr.-Ing. Jörn Budde' },
-        { k: 'Qualifikation', v: 'Öffentlich bestellt · vereidigt' },
+        { k: 'Qualifikation', v: 'TÜV-zertifiziert' },
         { k: 'Fachgebiet', v: 'Gebäudeabdichtung · Bautenschutz' },
         { k: 'Patent angemeldet', v: 'DE 10 2025 121 129.9' },
         { k: 'Sitz', v: 'Bad Saarow, Deutschland' },
@@ -491,7 +491,7 @@ export const content: Record<Locale, Content> = {
     intro: {
       eyebrow: 'What is the FBZ?',
       body:
-        'The FBZ waterstop centering element is a patent-pending moulded foam part that automatically positions waterstop sheets dead-center in the construction joint between base slab and rising wall of a watertight concrete structure (WU-Beton, also known as "Weiße Wanne"). The waterstop slides into a precision center slit and self-centers — displacement, insufficient rebar clearance and wrong embedment depth are eliminated by design. Throughout the entire pour, the FBZ holds the waterstop securely in place. Installation is manual, requires no special tools, and takes under one minute per linear meter. The product was developed by Dr.-Ing. Jörn Budde — court-appointed and sworn expert for building waterproofing and structural protection — and is manufactured by BBA GmbH in Bad Saarow, Germany. Patent pending: DE 10 2025 121 129.9.',
+        'The FBZ waterstop centering element is a patent-pending moulded foam part that automatically positions waterstop sheets dead-center in the construction joint between base slab and rising wall of a watertight concrete structure (WU-Beton, also known as "Weiße Wanne"). The waterstop slides into a precision center slit and self-centers — displacement, insufficient rebar clearance and wrong embedment depth are eliminated by design. Throughout the entire pour, the FBZ holds the waterstop securely in place. Installation is manual, requires no special tools, and takes under one minute per linear meter. The product was developed by Dr.-Ing. Jörn Budde — TÜV-certified expert for building waterproofing and structural protection — and is manufactured by BBA GmbH in Bad Saarow, Germany. Patent pending: DE 10 2025 121 129.9.',
       factA: { k: 'Component', v: 'Moulded foam element with center slit' },
       factB: { k: 'Application', v: 'Base-slab-to-wall joint, watertight concrete' },
       factC: { k: 'Install', v: '< 1 min / lm · tool-free' },
@@ -601,11 +601,11 @@ export const content: Record<Locale, Content> = {
       eyebrow: '06 — Manufacturer',
       headline: 'Engineered from long-standing expert practice.',
       body:
-        'The FBZ was developed by Dr.-Ing. Jörn Budde — court-appointed and sworn expert for building waterproofing and structural protection. Emerging from many years of expert practice at the base-to-wall joint, the element standardises waterstop centering and reduces a common source of installation error. The FBZ is manufactured by BBA GmbH in Bad Saarow, Germany, and delivered across the DACH region.',
+        'The FBZ was developed by Dr.-Ing. Jörn Budde — TÜV-certified expert for building waterproofing and structural protection. Emerging from many years of expert practice at the base-to-wall joint, the element standardises waterstop centering and reduces a common source of installation error. The FBZ is manufactured by BBA GmbH in Bad Saarow, Germany, and delivered across the DACH region.',
       facts: [
         { k: 'Manufacturer', v: 'BBA GmbH' },
         { k: 'Developer', v: 'Dr.-Ing. Jörn Budde' },
-        { k: 'Qualification', v: 'Court-appointed · sworn' },
+        { k: 'Qualification', v: 'TÜV-certified' },
         { k: 'Field', v: 'Waterproofing · Structural protection' },
         { k: 'Patent pending', v: 'DE 10 2025 121 129.9' },
         { k: 'Location', v: 'Bad Saarow, Germany' },

@@ -18,14 +18,8 @@ const cascadeLabels = {
   en: { eyebrow: 'Damage cascade', stepLabel: 'Stage' },
 } as const;
 
-const keyStat = {
-  de: { fromLabel: 'Sanierung je Schadensfall', toLabel: 'Mit FBZ', fromValue: '5–6 stellig', toValue: 'Bruchteil' },
-  en: { fromLabel: 'Remediation per case', toLabel: 'With FBZ', fromValue: '5–6 figure', toValue: 'Fraction' },
-} as const;
-
 const p = panelHeadline[locale];
 const c = cascadeLabels[locale];
-const k = keyStat[locale];
 ---
 
 <section class="relative py-[clamp(5rem,10vw,9rem)] border-t border-ink-line overflow-hidden">
@@ -53,38 +47,6 @@ const k = keyStat[locale];
       </p>
     </div>
 
-    <!-- Key-Stat: Mega transformation from cost-spectrum to fraction -->
-    <div class="col-span-12 lg:col-span-5 lg:col-start-8 mt-12 lg:mt-0 lg:pt-6">
-      <div class="relative border-t border-ink pt-8">
-        <span class="corner-mark corner-mark--tl"></span>
-        <span class="corner-mark corner-mark--tr"></span>
-
-        <div class="flex flex-col gap-2">
-          <span class="label text-[0.6875rem]">{k.fromLabel}</span>
-          <span
-            class="num-mega text-ink leading-[0.82]"
-            style="font-size: clamp(3rem, 7vw, 5.5rem);"
-            set:html={k.fromValue.replace(/[–-]/g, '<span class="num-dash">–</span>')}
-          />
-        </div>
-
-        <div class="flex items-center gap-4 my-5">
-          <span class="text-ink-mute font-display text-2xl md:text-3xl" aria-hidden="true">↓</span>
-          <span class="h-px flex-1 bg-ink-line"></span>
-          <span class="label text-[0.6875rem] text-blue">{k.toLabel}</span>
-        </div>
-
-        <div class="flex flex-col gap-1">
-          <span
-            class="font-display font-semibold text-blue leading-[0.92] tracking-[-0.03em]"
-            style="font-size: clamp(2.5rem, 5.5vw, 4.25rem);"
-          >
-            {k.toValue}
-          </span>
-          <span class="label text-[0.6875rem]">{locale === 'de' ? '· pro Laufmeter' : '· per linear meter'}</span>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Diptych: Ohne / Mit FBZ -->

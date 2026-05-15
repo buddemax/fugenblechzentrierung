@@ -40,21 +40,6 @@ const t = content[locale].detail;
         {t.lead}
       </p>
 
-      <!-- Annotation list (technical spec table styling) -->
-      <dl class="detail-dl mt-12 md:mt-16 border-t border-ink-line">
-        {t.annotations.map((row) => (
-          <Fragment>
-            <dt class="label text-[0.6875rem] py-4 pt-5 pr-4 border-b border-ink-line">{row.k}</dt>
-            <dd class="font-display text-base md:text-lg font-medium text-ink leading-tight tracking-tight py-4 border-b border-ink-line">
-              {row.v}
-            </dd>
-          </Fragment>
-        ))}
-      </dl>
-
-      <p class="mt-10 font-mono text-[0.75rem] tracking-[0.16em] uppercase text-ink-mute">
-        {t.note}
-      </p>
     </div>
 
     <!-- Rendering composition -->
